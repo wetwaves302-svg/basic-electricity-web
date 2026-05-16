@@ -1,0 +1,165 @@
+═══════════════════════════════════════════════════════════════
+   基本電學自學引導 ‧ 推送到 GitHub 完整步驟指南
+   開發者：國立花蓮高工 柯貞伊老師
+═══════════════════════════════════════════════════════════════
+
+
+📋 你會需要的東西
+────────────────────
+✓ GitHub 帳號（沒有的話免費註冊：https://github.com/signup）
+✓ 桌面上這個資料夾「basic-electricity-web」
+✓ Mac 內建的「終端機」(Terminal) — Spotlight 搜尋「終端機」就有
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ★ 在 GitHub 網站上建立 repo（用瀏覽器）
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+第 1 步：登入 GitHub
+─────────────────────
+  打開 https://github.com 並登入。
+
+第 2 步：建立新 repo
+─────────────────────
+  點右上角「+」→ 選「New repository」
+
+  填入以下欄位：
+    • Repository name：basic-electricity-web
+      （建議用這個英文名，網址會比較好看）
+    • Description（可留空，建議填）：
+      技高基本電學自學引導 — 含 33 公式卡、3 關闖關遊戲、
+      學習儀表板與 45 題引導
+    • Public ✓（公開，這樣才能用 GitHub Pages 免費版）
+    • 不要勾選 Initialize 任何東西
+      （Add README、.gitignore、license 都不勾！我已經寫好了）
+
+  → 點「Create repository」
+
+第 3 步：複製 repo 網址
+────────────────────────
+  創建完成後，GitHub 會顯示一頁「…or push an existing repository
+  from the command line」。
+
+  在那頁找到形如以下的 URL，複製起來：
+    https://github.com/你的帳號/basic-electricity-web.git
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ★ 在 Mac 終端機推送（用 Terminal）
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+第 4 步：打開終端機
+─────────────────────
+  Spotlight (Command + 空白) 搜尋「終端機」→ 開啟。
+
+第 5 步：複製貼上以下指令（一次一段）
+─────────────────────────────────────────────
+
+  # 5-1：進入這個資料夾
+  cd ~/Desktop/basic-electricity-web
+
+  # 5-2：如果已經有殘留的 .git，先刪掉（清乾淨）
+  rm -rf .git
+
+  # 5-3：初始化 git
+  git init -b main
+
+  # 5-4：設定你的 git 身分（首次用 git 需要設定）
+  git config user.email "godoflost@gmail.com"
+  git config user.name "Ke Zhen-Yi"
+
+  # 5-5：把所有檔案加入提交
+  git add .
+  git commit -m "Initial: 基本電學自學引導 互動網頁"
+
+  # 5-6：設定遠端 repo（記得把下面 URL 換成你的！）
+  git remote add origin https://github.com/你的帳號/basic-electricity-web.git
+
+  # 5-7：推上去
+  git push -u origin main
+
+
+第 6 步：登入認證
+─────────────────────
+  第一次推送時，會跳出視窗或在終端機問你帳密。
+
+  ※ 重要：GitHub 從 2021 年起『不接受密碼』，必須用：
+
+  方法 A — Personal Access Token（最常用）
+  ────────────────────────────────────────────
+    1. 到 https://github.com/settings/tokens
+    2. 點「Generate new token」→「Generate new token (classic)」
+    3. Note 填「Mac terminal」、Expiration 選 90 天
+    4. Scopes 勾「repo」（包含所有子項）
+    5. 拉到最下方點「Generate token」
+    6. 把跳出來的長字串『立刻複製』（離開頁面就再也看不到）
+    7. 終端機問 Password 時，貼上這串 token（不是你的 GitHub 密碼！）
+
+    ★ Mac 會把這串記在 Keychain 裡，下次就不用再貼。
+
+  方法 B — GitHub CLI（gh）
+  ────────────────────────────────────────────
+    終端機跑：
+       brew install gh
+       gh auth login
+    照流程選 GitHub.com → HTTPS → Login with web browser
+    → 它會自動處理，最方便。
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ★ 開啟 GitHub Pages（讓全世界都能用）
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+第 7 步：開啟 GitHub Pages
+─────────────────────────────
+  推送完成後，回到瀏覽器：
+
+  1. 進你的 repo 頁面
+  2. 點上方「Settings」
+  3. 左側選單點「Pages」
+  4. Source 區 → Branch 選「main」、資料夾選「/ (root)」
+  5. 點「Save」
+  6. 等 1–2 分鐘後重新整理頁面，會看到綠色提示：
+     「Your site is live at https://你的帳號.github.io/basic-electricity-web/」
+
+  → 把這個網址貼到手機、平板、學生電腦，全部都能用！
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ★ 之後修改再推送
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  之後改了 HTML 或 data.js，要更新到 GitHub 時：
+
+  cd ~/Desktop/basic-electricity-web
+  git add .
+  git commit -m "簡短說明改了什麼"
+  git push
+
+  GitHub Pages 會自動偵測，1 分鐘內網站自動更新。
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ★ 常見問題
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Q1. 推送失敗，說「fatal: refusing to merge unrelated histories」
+   → 用：git push -u origin main --force-with-lease
+
+Q2. 我的 GitHub 帳號名稱不知道
+   → 在 GitHub 網頁右上角頭像就會看到
+
+Q3. 終端機說「command not found: git」
+   → 跑：xcode-select --install （Mac 內建 Git 工具會自動裝）
+
+Q4. 我修改檔案後，怎麼把 .docx / .pdf 也推上去？
+   → 不建議。本 repo 只放網頁。
+     PDF / Word 留在 ~/Desktop/臺灣技高基本電學教材/ 即可。
+
+Q5. 想客製 GitHub Pages 網址？
+   → 在 repo 加一個檔案叫 CNAME，內容寫你的網域。
+     詳見：https://docs.github.com/zh/pages
+
+═══════════════════════════════════════════════════════════════
+   如果哪一步卡關，直接把錯誤訊息貼給我，我會繼續引導你！
+═══════════════════════════════════════════════════════════════

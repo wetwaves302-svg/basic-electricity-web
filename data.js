@@ -1,0 +1,1266 @@
+// 題庫資料 — 45 題（25 交流 + 20 電容電感磁學）
+// 每題包含「五階段引導」、考爆陷阱、口訣記憶法
+
+const QUESTIONS = [
+  // ========== AC CIRCUITS (25 題) ==========
+  {
+    id: "ac-01", topic: "AC", subtopic: "基本概念", diff: 1,
+    title: "正弦波的有效值與週期",
+    question: "某正弦交流電壓的峰值為 200 V，頻率為 50 Hz，請問有效值與週期分別是多少？",
+    steps: [
+      { title: "先把題目給的資料整理出來",
+        hint: "考試最怕看到題目腦袋一片空白！哥的建議：把『已知』先寫下來。",
+        content: "已知：Vₘ（峰值）= 200 V，f（頻率）= 50 Hz\n要求：V_rms（有效值）、T（週期）" },
+      { title: "想想看：要算什麼？需要哪個公式？",
+        hint: "兩個小公式而已，先別怕！",
+        content: "有效值：V_rms = Vₘ / √2\n週期：T = 1 / f" },
+      { title: "代入數字",
+        hint: "代的時候，記得單位也要寫上去，這是基本功！",
+        content: "V_rms = 200 / √2 = 200 / 1.414\nT = 1 / 50" },
+      { title: "按計算機",
+        content: "V_rms ≈ 141.4 V\nT = 0.02 s = 20 ms" },
+      { title: "回頭檢查答案合不合理",
+        hint: "有效值會比峰值小，這合理！週期 20 ms 就是 1 秒 50 個波，也對。",
+        content: "✓ V_rms 小於 Vₘ：合理\n✓ 50 Hz → 每秒 50 個完整波 → T = 1/50：合理" }
+    ],
+    trap: "很多同學會把 200 直接當有效值，這是統測常見扣分點！家用 110 V 就是有效值，峰值其實有 155 V 喔。",
+    mnemonic: "「**有效值**」聽起來很厲害，但其實是『等效直流發熱』的概念，所以一定比峰值『小』！記住公式：÷√2。",
+    answer: "V_rms ≈ 141.4 V，T = 20 ms"
+  },
+  {
+    id: "ac-02", topic: "AC", subtopic: "基本概念", diff: 1,
+    title: "從正弦波算頻率與相位",
+    question: "已知 v(t) = 100 sin(377t + 30°) V，求頻率、角頻率與相位。",
+    steps: [
+      { title: "對照通式找參數",
+        hint: "通式長這樣：v(t) = Vₘ·sin(ωt + φ)。把題目跟通式『對齊』就行了。",
+        content: "對照後：\nVₘ = 100，ω = 377，φ = 30°" },
+      { title: "ω 跟 f 的關係",
+        hint: "永遠記得這個橋樑：ω = 2πf。",
+        content: "f = ω / (2π) = 377 / 6.283" },
+      { title: "算 f",
+        content: "f ≈ 60 Hz" },
+      { title: "整理答案",
+        content: "頻率 f = 60 Hz\n角頻率 ω = 377 rad/s\n起始相位 φ = +30°" }
+    ],
+    trap: "ω 的單位是 rad/s，不是 Hz！很多人混淆。",
+    mnemonic: "看到 377 就要反射：『這是 60 Hz！』，看到 314 就要反射：『這是 50 Hz！』。",
+    answer: "f = 60 Hz，ω = 377 rad/s，φ = +30°"
+  },
+  {
+    id: "ac-03", topic: "AC", subtopic: "相位", diff: 1,
+    title: "判斷兩波的相位關係",
+    question: "兩正弦波 v₁ = 50 sin(ωt + 60°)，v₂ = 50 sin(ωt − 30°)，兩者相位關係為？",
+    steps: [
+      { title: "找出每個波的起始相位",
+        content: "v₁ 的 φ₁ = +60°\nv₂ 的 φ₂ = −30°" },
+      { title: "相位差 = φ₁ − φ₂",
+        hint: "結果是正的 → 前面那個領先；負的 → 前面那個落後。",
+        content: "Δφ = 60° − (−30°) = 60° + 30° = 90°" },
+      { title: "解讀",
+        content: "Δφ = +90° > 0\n表示 v₁ 領先 v₂ 90 度" }
+    ],
+    trap: "減負數變加號！φ₁ − (−30°) = φ₁ + 30°，要算 90°，不是 30°！",
+    mnemonic: "「**領先**」就是『時間上先到』的意思，相當於波形『往左移』。",
+    answer: "v₁ 領先 v₂ 90°"
+  },
+  {
+    id: "ac-04", topic: "AC", subtopic: "純L", diff: 1,
+    title: "純電感感抗",
+    question: "60 Hz 之 0.5 H 電感，求其感抗 X_L。",
+    steps: [
+      { title: "認公式：感抗 = 2πfL",
+        hint: "L 永遠跟頻率成正比！f 越大，L 越擋電流。",
+        content: "X_L = 2π·f·L" },
+      { title: "代入",
+        content: "X_L = 2π × 60 × 0.5" },
+      { title: "算",
+        content: "X_L = 60π ≈ 188.5 Ω" }
+    ],
+    trap: "別忘了 2π！算式裡有些同學常常漏掉 π，答案就會差好幾倍。",
+    mnemonic: "**L** 與 **f** 喜歡『同甘共苦』（成正比）；**C** 與 **f** 則是『歡喜冤家』（成反比）。",
+    answer: "X_L ≈ 188.5 Ω"
+  },
+  {
+    id: "ac-05", topic: "AC", subtopic: "純C", diff: 1,
+    title: "純電容容抗",
+    question: "60 Hz 下 100 µF 之電容，求容抗 X_C。",
+    steps: [
+      { title: "容抗公式",
+        hint: "容抗跟感抗剛好相反喔，是『除』，不是『乘』！",
+        content: "X_C = 1 / (2π·f·C)" },
+      { title: "代入 (注意 µF = 10⁻⁶ F)",
+        content: "X_C = 1 / (2π × 60 × 100×10⁻⁶)\n     = 1 / (2π × 0.006)\n     = 1 / 0.0377" },
+      { title: "算",
+        content: "X_C ≈ 26.53 Ω" }
+    ],
+    trap: "µF (微法) 跟 F (法拉) 差 10⁶ 倍！單位換錯整個答案就毀了。",
+    mnemonic: "C 的『C』也代表『**Counter**』(反過來)：跟 L 公式長得相反，記住 X_C = 1 / (2πfC)。",
+    answer: "X_C ≈ 26.53 Ω"
+  },
+  {
+    id: "ac-06", topic: "AC", subtopic: "阻抗", diff: 2,
+    title: "阻抗極座標轉換",
+    question: "將阻抗 Z = 6 + j8 Ω 轉換為極座標表示。",
+    steps: [
+      { title: "認出 R 跟 X",
+        hint: "前面那個（不帶 j 的）是 R，後面那個（帶 j 的）是 X。",
+        content: "R = 6，X = 8" },
+      { title: "大小：畢氏定理",
+        hint: "想像直角三角形！R 跟 X 是兩股，Z 是斜邊。",
+        content: "|Z| = √(R² + X²) = √(36 + 64) = √100" },
+      { title: "算 |Z|",
+        content: "|Z| = 10" },
+      { title: "角度：tan⁻¹(X/R)",
+        content: "θ = tan⁻¹(8/6) = tan⁻¹(1.333) ≈ 53.13°" },
+      { title: "組合答案",
+        content: "Z = 10 ∠ 53.13° Ω" }
+    ],
+    trap: "「3, 4, 5」「6, 8, 10」「5, 12, 13」是統測必考三角組！背起來省時間。",
+    mnemonic: "**直 → 極**：「畢氏 + tan⁻¹」；**極 → 直**：「cos + sin」。",
+    answer: "Z = 10 ∠ 53.13° Ω"
+  },
+  {
+    id: "ac-07", topic: "AC", subtopic: "概念", diff: 1,
+    title: "純元件相位關係判斷",
+    question: "下列敘述何者正確？(A) 純電感中電流領先電壓 90° (B) 純電容中電壓領先電流 90° (C) 純電阻中電壓與電流同相 (D) RLC 串聯諧振時阻抗最大",
+    steps: [
+      { title: "用口訣 ELI、ICE 判斷",
+        hint: "**ELI**: 電感裡 E 領先 I；**ICE**: 電容裡 I 領先 E。",
+        content: "純 L：V 領先 I 90°\n純 C：I 領先 V 90°\n純 R：V 與 I 同相" },
+      { title: "逐項檢查",
+        content: "(A) 純 L 中 V 領先 I → 題目說『電流領先』，錯！\n(B) 純 C 中 I 領先 V → 題目說『電壓領先』，錯！\n(C) 純 R 中同相 → 正確！\n(D) 串聯諧振阻抗『最小』(= R)，錯！" }
+    ],
+    trap: "純元件的相位關係跟『誰擋誰、誰跟誰』有關，超常考！把 ELI / ICE 寫在草稿紙最上面。",
+    mnemonic: "**ELI the ICE man** — 想像有個叫 ELI 的賣冰人（ICE man）。Eli 在電感裡領頭，賣冰人在電容裡領頭！",
+    answer: "(C)"
+  },
+  {
+    id: "ac-08", topic: "AC", subtopic: "RLC串聯", diff: 2,
+    title: "RLC 串聯總阻抗與電流",
+    question: "RLC 串聯：R = 6 Ω，X_L = 12 Ω，X_C = 4 Ω，接 100 V 60 Hz 電源，求總阻抗、電流、相位角。",
+    steps: [
+      { title: "先把電抗淨額算出來",
+        hint: "L 跟 C 互相抵消！誰大就跟著誰。",
+        content: "X = X_L − X_C = 12 − 4 = 8 Ω\n(L > C，所以是感性)" },
+      { title: "畢氏算 |Z|",
+        content: "|Z| = √(R² + X²) = √(6² + 8²) = √100 = 10 Ω" },
+      { title: "相位角",
+        content: "θ = tan⁻¹(8/6) ≈ 53.13°" },
+      { title: "電流 = 電壓 ÷ 阻抗",
+        content: "I = V / |Z| = 100 / 10 = 10 A" }
+    ],
+    trap: "X = X_L − X_C，順序很重要！結果如果是負的，就是容性（C 比 L 大）。",
+    mnemonic: "RLC 三兄弟相愛相殺：**R 老實**（不抵消）；**L 跟 C 打架**，淨值才有效。",
+    answer: "Z = 10 ∠ 53.13° Ω，I = 10 A"
+  },
+  {
+    id: "ac-09", topic: "AC", subtopic: "RLC串聯", diff: 2,
+    title: "RLC 各元件分壓",
+    question: "承上題，求 V_R、V_L、V_C 大小與功率因數。",
+    steps: [
+      { title: "串聯時 I 相同！分別乘各自阻抗",
+        hint: "歐姆定律的延伸：V = I × Z。",
+        content: "V_R = I × R = 10 × 6 = 60 V\nV_L = I × X_L = 10 × 12 = 120 V\nV_C = I × X_C = 10 × 4 = 40 V" },
+      { title: "驗證：總電壓不是直接加！",
+        hint: "因為相位不同，要用『相量加法』！V_R 與 V_L、V_C 互相垂直。",
+        content: "|V_總| = √(V_R² + (V_L − V_C)²) = √(60² + 80²) = √10000 = 100 V ✓ (= 電源)" },
+      { title: "功率因數 = cos θ = R / |Z|",
+        content: "PF = 6 / 10 = 0.6" }
+    ],
+    trap: "**V_L 比電源還大！**這在 RLC 串聯太常見了 — 就是『過電壓』現象。考試會故意設陷阱讓你以為算錯。",
+    mnemonic: "**串聯電流共**，**並聯電壓共**。串聯時，各元件電壓相位不同，所以不能直接加。",
+    answer: "V_R = 60 V，V_L = 120 V，V_C = 40 V，PF = 0.6"
+  },
+  {
+    id: "ac-10", topic: "AC", subtopic: "功率", diff: 2,
+    title: "三種功率計算",
+    question: "某負載 V = 220 V、I = 5 A、PF = 0.8（落後），求實功 P、虛功 Q、視在功率 S。",
+    steps: [
+      { title: "視在功率最直接：S = V × I",
+        content: "S = 220 × 5 = 1100 VA" },
+      { title: "實功 P = S × cos θ = S × PF",
+        content: "P = 1100 × 0.8 = 880 W" },
+      { title: "虛功 Q 需要 sin θ",
+        hint: "cos θ = 0.8 → sin θ = ? 想想直角三角形：0.6, 0.8, 1.0 啊！",
+        content: "sin θ = √(1 − 0.8²) = √0.36 = 0.6\nQ = S × sin θ = 1100 × 0.6 = 660 VAR" }
+    ],
+    trap: "三種功率單位不一樣！**W**（瓦特）、**VAR**（無效）、**VA**（視在），考試常考你會不會寫對單位。",
+    mnemonic: "**功率三角形**：水平 P、垂直 Q、斜邊 S。**P² + Q² = S²**。",
+    answer: "P = 880 W，Q = 660 VAR，S = 1100 VA"
+  },
+  {
+    id: "ac-11", topic: "AC", subtopic: "RLC並聯", diff: 3,
+    title: "RLC 並聯總電流",
+    question: "RLC 並聯：R = 10 Ω，X_L = 20 Ω，X_C = 40 Ω，外加 100 V 電源，求總電流。",
+    steps: [
+      { title: "並聯：電壓共 → 各支路分別算電流",
+        content: "I_R = V/R = 100/10 = 10 A（與 V 同相）\nI_L = V/X_L = 100/20 = 5 A（落後 90°）\nI_C = V/X_C = 100/40 = 2.5 A（領先 90°）" },
+      { title: "L、C 電流方向相反，先抵消",
+        content: "I_X = I_L − I_C = 5 − 2.5 = 2.5 A\n(L > C，所以淨流是『感性』，落後 V)" },
+      { title: "相量加法：I_R 與 I_X 互相垂直",
+        content: "|I| = √(I_R² + I_X²) = √(10² + 2.5²) = √(100 + 6.25)" },
+      { title: "算",
+        content: "|I| = √106.25 ≈ 10.31 A" }
+    ],
+    trap: "並聯時**電壓**共，**電流**不共，跟串聯剛好顛倒！別混淆。",
+    mnemonic: "**串聯 RLC：電壓加減用相量**；**並聯 RLC：電流加減用相量**。",
+    answer: "|I| ≈ 10.31 A"
+  },
+  {
+    id: "ac-12", topic: "AC", subtopic: "功率因數改善", diff: 3,
+    title: "並聯電容改善功率因數",
+    question: "某工廠 P = 8 kW、PF = 0.6（落後），要提升到 PF = 0.8（落後），需並聯多少 VAR 電容？",
+    steps: [
+      { title: "把兩個角度算出來",
+        hint: "cos⁻¹ 用三角組記憶會超快：0.6 → 53.13°，0.8 → 36.87°。",
+        content: "θ₁ = cos⁻¹(0.6) = 53.13°，tan θ₁ = 4/3 ≈ 1.333\nθ₂ = cos⁻¹(0.8) = 36.87°，tan θ₂ = 3/4 = 0.75" },
+      { title: "需要補的無效功率",
+        hint: "公式：Q_C = P × (tan θ₁ − tan θ₂)",
+        content: "Q_C = 8 × (1.333 − 0.75) = 8 × 0.583" },
+      { title: "算",
+        content: "Q_C ≈ 4.67 kVAR" }
+    ],
+    trap: "**注意 P 的單位**！題目給 kW，答案就是 kVAR，別自作聰明換成 VA。",
+    mnemonic: "改善 PF 的口訣：**「P 不變，Q 變小」**。電容專門吃感性虛功！",
+    answer: "Q_C ≈ 4.67 kVAR"
+  },
+  {
+    id: "ac-13", topic: "AC", subtopic: "諧振", diff: 2,
+    title: "串聯諧振頻率",
+    question: "串聯 RLC：R = 5 Ω、L = 10 mH、C = 1 µF，求諧振頻率 f₀。",
+    steps: [
+      { title: "諧振公式（背起來！）",
+        hint: "f₀ = 1 / (2π·√(LC))。R 不影響諧振頻率喔！",
+        content: "f₀ = 1 / (2π·√(L × C))" },
+      { title: "先算 L×C (小心單位！)",
+        content: "L = 10 mH = 10×10⁻³ = 10⁻² H\nC = 1 µF = 10⁻⁶ F\nL × C = 10⁻² × 10⁻⁶ = 10⁻⁸" },
+      { title: "開根號",
+        content: "√(10⁻⁸) = 10⁻⁴" },
+      { title: "套公式",
+        content: "f₀ = 1 / (2π × 10⁻⁴) = 10000 / (2π) ≈ 1591 Hz" }
+    ],
+    trap: "**單位**統一是這題的關鍵！mH、µF、nF 都要先換成 SI 基本單位 H、F。",
+    mnemonic: "**「LC 顯示器」**諧振：L 跟 C 共舞，R 在旁邊看戲。",
+    answer: "f₀ ≈ 1.59 kHz"
+  },
+  {
+    id: "ac-14", topic: "AC", subtopic: "諧振", diff: 2,
+    title: "Q 值與頻寬",
+    question: "承上題，求 Q 值與頻寬 BW。",
+    steps: [
+      { title: "Q 值公式（最省力的那個）",
+        hint: "Q = (1/R)·√(L/C)。",
+        content: "Q = (1/5) × √(L/C) = (1/5) × √(10⁻²/10⁻⁶)" },
+      { title: "化簡分數",
+        content: "10⁻²/10⁻⁶ = 10⁴\n√(10⁴) = 100" },
+      { title: "算 Q",
+        content: "Q = (1/5) × 100 = 20" },
+      { title: "頻寬 BW = f₀ / Q",
+        content: "BW = 1591 / 20 ≈ 79.6 Hz" }
+    ],
+    trap: "Q 值越大，頻寬越**窄**（選擇性越好），不是越寬！這在收音機選台用得到。",
+    mnemonic: "**Q 跟 R 反比**、**Q 跟 BW 反比**。記住「**Q 大 → 尖**」就好。",
+    answer: "Q = 20，BW ≈ 79.6 Hz"
+  },
+  {
+    id: "ac-15", topic: "AC", subtopic: "諧振概念", diff: 1,
+    title: "影響諧振頻率的因素",
+    question: "下列何者會使 RLC 串聯電路之諧振頻率「降低」？(A) 增加 R (B) 增加 L (C) 減少 C (D) 增加電源頻率",
+    steps: [
+      { title: "回頭看公式",
+        content: "f₀ = 1 / (2π·√(LC))" },
+      { title: "逐項分析",
+        content: "(A) R 不影響 f₀ → 錯\n(B) L↑ → √(LC)↑ → f₀↓ ✓\n(C) C↓ → √(LC)↓ → f₀↑（變高），錯\n(D) 電源頻率不影響 f₀（f₀ 是電路自己的特性）" }
+    ],
+    trap: "**諧振頻率是電路本身的特性**，跟外加電源頻率無關！是電源頻率『遇到』f₀ 才會諧振。",
+    mnemonic: "**「L 重 C 重，f₀ 低」**：L 跟 C 都讓系統反應變慢。",
+    answer: "(B)"
+  },
+  {
+    id: "ac-16", topic: "AC", subtopic: "變壓器", diff: 1,
+    title: "理想變壓器匝數比",
+    question: "理想變壓器初級 2200 V、次級 110 V，求匝數比 a。",
+    steps: [
+      { title: "匝數比的定義",
+        hint: "a = N₁/N₂ = V₁/V₂。**電壓比 = 匝數比**。",
+        content: "a = V₁ / V₂" },
+      { title: "代入",
+        content: "a = 2200 / 110 = 20" }
+    ],
+    trap: "電壓越高的那邊匝數越多！高壓側 → 多匝；低壓側 → 少匝。",
+    mnemonic: "**「匝多壓大」**：匝數多 → 電壓大；匝數少 → 電壓小。",
+    answer: "a = 20"
+  },
+  {
+    id: "ac-17", topic: "AC", subtopic: "變壓器", diff: 2,
+    title: "阻抗反射",
+    question: "承上題，若次級接 5 Ω 電阻，求初級看入的等效阻抗。",
+    steps: [
+      { title: "阻抗反射公式",
+        hint: "Z₁ = a² × Z₂。注意是『**平方**』！",
+        content: "Z₁ = a² × Z₂" },
+      { title: "代入",
+        content: "Z₁ = 20² × 5 = 400 × 5" },
+      { title: "算",
+        content: "Z₁ = 2000 Ω = 2 kΩ" }
+    ],
+    trap: "是 a² ! 不是 a！很多人忘記平方就慘了。",
+    mnemonic: "**「電壓比 a，阻抗 a²」**。例如 a = 10 → 阻抗放大 100 倍。",
+    answer: "Z₁ = 2 kΩ"
+  },
+  {
+    id: "ac-18", topic: "AC", subtopic: "變壓器", diff: 2,
+    title: "變壓器電流比",
+    question: "理想變壓器初級 100 V、次級 25 V，次級流出 4 A，求初級電流。",
+    steps: [
+      { title: "匝數比",
+        content: "a = V₁ / V₂ = 100 / 25 = 4" },
+      { title: "電流跟電壓『反過來』",
+        hint: "I₁ × N₁ = I₂ × N₂，所以 I₁/I₂ = N₂/N₁ = 1/a",
+        content: "I₁ = I₂ / a = 4 / 4 = 1 A" }
+    ],
+    trap: "電壓比 = 匝數比，**電流比剛好顛倒** = 匝數比的倒數！",
+    mnemonic: "**「升壓降流，降壓升流」**：能量守恆，電壓上去，電流就下來。",
+    answer: "I₁ = 1 A"
+  },
+  {
+    id: "ac-19", topic: "AC", subtopic: "變壓器", diff: 3,
+    title: "變壓器效率",
+    question: "10 kVA 變壓器，銅損 200 W，鐵損 100 W，滿載 PF = 1，求效率。",
+    steps: [
+      { title: "輸出功率",
+        hint: "PF = 1 表示沒有虛功，P = S。",
+        content: "P_out = S × PF = 10000 × 1 = 10000 W" },
+      { title: "輸入功率",
+        hint: "輸入 = 輸出 + 各種損耗",
+        content: "P_in = P_out + 銅損 + 鐵損\n     = 10000 + 200 + 100 = 10300 W" },
+      { title: "效率公式",
+        content: "η = P_out / P_in = 10000 / 10300 ≈ 0.9709" },
+      { title: "百分比",
+        content: "η ≈ 97.1%" }
+    ],
+    trap: "效率永遠 < 100%！如果你算出超過 100%，肯定算錯了。",
+    mnemonic: "**「銅損隨負載，鐵損固定」**：銅損 ∝ I²；鐵損 ∝ V²。",
+    answer: "η ≈ 97.1%"
+  },
+  {
+    id: "ac-20", topic: "AC", subtopic: "三相", diff: 1,
+    title: "Y 接線電壓",
+    question: "三相 Y 接負載，相電壓 V_p = 220 V，求線電壓 V_L。",
+    steps: [
+      { title: "Y 接的口訣",
+        hint: "**「Y 接電壓大 √3」**：線電壓是相電壓的 √3 倍。",
+        content: "V_L = √3 × V_p" },
+      { title: "代入 (√3 ≈ 1.732)",
+        content: "V_L = 1.732 × 220 ≈ 381 V" }
+    ],
+    trap: "Y 接：**電壓大 √3**、**電流相同**！Δ 接剛好顛倒。",
+    mnemonic: "**「Y 接電壓 √3 倍，Δ 接電流 √3 倍」** — 死背！",
+    answer: "V_L ≈ 381 V"
+  },
+  {
+    id: "ac-21", topic: "AC", subtopic: "三相", diff: 1,
+    title: "Δ 接線電流",
+    question: "三相 Δ 接負載，每相電流 I_p = 10 A，求線電流 I_L。",
+    steps: [
+      { title: "Δ 接的口訣",
+        hint: "**「Δ 接電流大 √3」**：線電流是相電流的 √3 倍。",
+        content: "I_L = √3 × I_p" },
+      { title: "代入",
+        content: "I_L = 1.732 × 10 ≈ 17.32 A" }
+    ],
+    trap: "Δ 接：**電流大 √3**、**電壓相同**。",
+    mnemonic: "Y 接看『**外**』倍 √3（線電壓）；Δ 接看『**外**』倍 √3（線電流）。",
+    answer: "I_L ≈ 17.32 A"
+  },
+  {
+    id: "ac-22", topic: "AC", subtopic: "三相功率", diff: 2,
+    title: "三相實功",
+    question: "三相平衡負載：V_L = 380 V，I_L = 20 A，PF = 0.866（落後），求三相實功 P。",
+    steps: [
+      { title: "三相功率黃金公式",
+        hint: "不管 Y 接 Δ 接，**都用同一個公式**！",
+        content: "P = √3 × V_L × I_L × cos θ" },
+      { title: "代入 (√3 ≈ 1.732)",
+        content: "P = 1.732 × 380 × 20 × 0.866" },
+      { title: "分步算",
+        content: "1.732 × 380 ≈ 658.2\n658.2 × 20 = 13164\n13164 × 0.866 ≈ 11400" },
+      { title: "答",
+        content: "P ≈ 11400 W = 11.4 kW" }
+    ],
+    trap: "**√3 × cos θ**，不是 √3 + cos θ！很多人計算機按錯。",
+    mnemonic: "**「三相實功：√3 × V_L × I_L × PF」** — 背到滾瓜爛熟！",
+    answer: "P ≈ 11.4 kW"
+  },
+  {
+    id: "ac-23", topic: "AC", subtopic: "三相概念", diff: 1,
+    title: "三相系統觀念題",
+    question: "下列敘述何者錯誤？(A) Y 接時線電壓是相電壓的 √3 倍 (B) Δ 接時線電流是相電流的 √3 倍 (C) 三相系統三電壓相差 90° (D) 三相平衡負載中性線無電流",
+    steps: [
+      { title: "三相基礎",
+        content: "三相電壓互差 **120°**，不是 90°！" },
+      { title: "逐項檢查",
+        content: "(A) 正確：Y 接 V_L = √3·V_p\n(B) 正確：Δ 接 I_L = √3·I_p\n(C) 錯！應該是 120°\n(D) 正確：三相平衡時，中性線電流 = 0" }
+    ],
+    trap: "三相 = 120°！不是 90°、不是 60°！這是基本中的基本。",
+    mnemonic: "**「三相分一圈 360° / 3 = 120°」** — 用數學想就不會錯。",
+    answer: "(C)"
+  },
+  {
+    id: "ac-24", topic: "AC", subtopic: "RLC綜合", diff: 3,
+    title: "由功率反推 R",
+    question: "RLC 串聯接 100 V 50 Hz 電源，已知 P = 600 W、PF = 0.6（落後），求 R、|Z|、I。",
+    steps: [
+      { title: "由 P 與 PF 反推 S",
+        hint: "P = S × PF → S = P / PF",
+        content: "S = P / PF = 600 / 0.6 = 1000 VA" },
+      { title: "由 S 與 V 算 I",
+        content: "S = V × I → I = S / V = 1000 / 100 = 10 A" },
+      { title: "由 V 與 I 算 |Z|",
+        content: "|Z| = V / I = 100 / 10 = 10 Ω" },
+      { title: "R = |Z| × cos θ = |Z| × PF",
+        content: "R = 10 × 0.6 = 6 Ω" }
+    ],
+    trap: "P = V × I × **cos θ**，不要忘記 cos θ！沒有 PF 你就拿不到對的 R。",
+    mnemonic: "**「P/PF=S，S/V=I，V/I=Z，Z×PF=R」** — 這條路徑要熟！",
+    answer: "R = 6 Ω，|Z| = 10 Ω，I = 10 A"
+  },
+  {
+    id: "ac-25", topic: "AC", subtopic: "諧振概念", diff: 2,
+    title: "諧振電路觀念題",
+    question: "下列何者正確？(A) 串聯諧振時阻抗最大 (B) 並聯諧振時阻抗最小 (C) Q 值越大頻寬越窄 (D) 諧振頻率與 R 成反比",
+    steps: [
+      { title: "回憶兩種諧振的特性",
+        content: "**串聯諧振**：阻抗『最小』(= R)，電流『最大』\n**並聯諧振**：阻抗『最大』，電流『最小』" },
+      { title: "Q 值與頻寬的關係",
+        content: "BW = f₀ / Q\nQ 大 → BW 小（選擇性好）" },
+      { title: "諧振頻率公式",
+        content: "f₀ = 1/(2π√(LC))\n**跟 R 無關**！" },
+      { title: "逐項",
+        content: "(A) 錯（串聯阻抗最小）\n(B) 錯（並聯阻抗最大）\n(C) 正確 ✓\n(D) 錯（f₀ 跟 R 無關）" }
+    ],
+    trap: "串聯諧振 → 阻抗『**小**』，並聯諧振 → 阻抗『**大**』，剛好相反！很多人記反。",
+    mnemonic: "**「串小並大」**：串聯諧振阻抗小，並聯諧振阻抗大。",
+    answer: "(C)"
+  },
+  // ========== CAPACITOR / INDUCTOR / MAGNETISM (20 題) ==========
+  {
+    id: "cm-01", topic: "CM", subtopic: "電容", diff: 2,
+    title: "平行板電容多重變化",
+    question: "兩平行板電容器，極板面積 A、間距 d。若介電質改成 εᵣ = 4、距離縮短為 d/2、面積擴為 2A，電容變幾倍？",
+    steps: [
+      { title: "公式：C = ε₀·εᵣ·A / d",
+        hint: "三個變化分別看影響。",
+        content: "C ∝ εᵣ × A / d" },
+      { title: "三個變化整理",
+        content: "εᵣ: 1 → 4，倍數 ×4\nA: A → 2A，倍數 ×2\nd: d → d/2，分母變小 → ×2" },
+      { title: "相乘",
+        content: "倍數 = 4 × 2 × 2 = 16" }
+    ],
+    trap: "分母 (d) 變小時，整體變『大』！距離縮短一半 = 電容變兩倍。",
+    mnemonic: "**「**εᵣ 同方向，A 同方向，d 反方向**」**：與電容值的關係。",
+    answer: "16 倍"
+  },
+  {
+    id: "cm-02", topic: "CM", subtopic: "電容串並聯", diff: 2,
+    title: "電容混合接法",
+    question: "三個電容 6 µF、12 µF、4 µF 並聯後，再串接一個 2 µF，求總電容。",
+    steps: [
+      { title: "並聯 = 直接相加",
+        hint: "電容並聯跟電阻並聯完全相反！是直接『加』。",
+        content: "C₁₂₃ = 6 + 12 + 4 = 22 µF" },
+      { title: "再與 2 µF 串聯：用『乘除加』",
+        hint: "兩個電容串聯：C = C_a × C_b / (C_a + C_b)",
+        content: "C_總 = (22 × 2) / (22 + 2) = 44 / 24" },
+      { title: "化簡",
+        content: "C_總 = 44/24 = 11/6 ≈ 1.83 µF" }
+    ],
+    trap: "**電容串聯**像電阻並聯（值會比最小者小）！**電容並聯**像電阻串聯（直接加）！",
+    mnemonic: "**「C 跟 R 相反」** — 電容並聯加總，串聯倒數加。",
+    answer: "11/6 µF ≈ 1.83 µF"
+  },
+  {
+    id: "cm-03", topic: "CM", subtopic: "電容能量", diff: 1,
+    title: "電容儲能",
+    question: "100 µF 電容充電到 50 V，儲存多少能量？",
+    steps: [
+      { title: "電容儲能公式",
+        hint: "W = ½CV²，**有平方**！",
+        content: "W = ½ × C × V²" },
+      { title: "代入",
+        content: "W = ½ × 100×10⁻⁶ × 50²\n  = ½ × 100×10⁻⁶ × 2500" },
+      { title: "算",
+        content: "W = ½ × 0.25 = 0.125 J" }
+    ],
+    trap: "**有 V²，沒有 I²**！別跟電感公式搞混（電感是 ½LI²）。",
+    mnemonic: "**「C 配 V²，L 配 I²」** — 電容貪電壓，電感貪電流。",
+    answer: "0.125 J"
+  },
+  {
+    id: "cm-04", topic: "CM", subtopic: "RC暫態", diff: 2,
+    title: "RC 充電一個時間常數",
+    question: "RC 串聯，R = 10 kΩ、C = 100 µF，外加 20 V 直流。一個時間常數後電容上電壓為多少？",
+    steps: [
+      { title: "算時間常數 τ",
+        hint: "τ = RC，單位是秒。",
+        content: "τ = 10×10³ × 100×10⁻⁶ = 10⁻¹ × 10 = 1 s" },
+      { title: "公式：1τ 後 ≈ 63.2% 充飽",
+        hint: "這數字要背！1τ → 63.2%、2τ → 86.5%、3τ → 95%、5τ → 99.3%",
+        content: "v_C(1τ) = Vₛ × (1 − e⁻¹) = Vₛ × 0.632" },
+      { title: "代入",
+        content: "v_C = 20 × 0.632 = 12.64 V" }
+    ],
+    trap: "**63.2% 是『充到 63.2%』而不是『剩下 63.2%』**！搞反就完蛋。",
+    mnemonic: "**「1τ → 63.2%、5τ → 完成」** — 統測背一輩子。",
+    answer: "≈ 12.64 V"
+  },
+  {
+    id: "cm-05", topic: "CM", subtopic: "電容概念", diff: 1,
+    title: "電容性質判斷",
+    question: "下列敘述何者錯誤？(A) 電容值與面積成正比 (B) 電容值與距離成反比 (C) 電容串聯等效電容變大 (D) 電容並聯時電壓相同",
+    steps: [
+      { title: "電容公式 C = ε·A/d",
+        content: "A↑ → C↑（正比）\nd↑ → C↓（反比）" },
+      { title: "串並聯結論",
+        content: "並聯 → 加總 → 變『大』\n串聯 → 倒數加總 → 變『小』（比最小還小）" },
+      { title: "逐項",
+        content: "(A) 正確\n(B) 正確\n(C) **錯**！串聯反而變小\n(D) 正確（並聯共電壓）" }
+    ],
+    trap: "**電容串聯變小**、**電容並聯變大** — 這跟電阻完全相反！",
+    mnemonic: "「電容像水桶」：兩個水桶『串接』，能裝的水反而變少（共用一個入口）。",
+    answer: "(C)"
+  },
+  {
+    id: "cm-06", topic: "CM", subtopic: "電容分壓", diff: 2,
+    title: "電容串聯分壓",
+    question: "C₁ = 4 µF、C₂ = 6 µF 串聯，接 100 V，求 C₁ 上的電壓。",
+    steps: [
+      { title: "串聯時電荷 Q 相同",
+        hint: "電荷沒得分配，但電壓是按 1/C 的比例分。",
+        content: "Q = C × V，串聯 Q 相同" },
+      { title: "電壓分配公式（注意是『另一個』）",
+        hint: "**「另一個分子！」**：V_1 = V × C_2 / (C_1 + C_2)",
+        content: "V_1 = V × C_2 / (C_1 + C_2)" },
+      { title: "代入",
+        content: "V_1 = 100 × 6 / (4 + 6) = 100 × 0.6" },
+      { title: "算",
+        content: "V_1 = 60 V" }
+    ],
+    trap: "**電容小的電壓大**！跟電阻分壓相反 — 電阻大的電壓大，電容小的電壓大。",
+    mnemonic: "**「電壓跟 C 反比」** — 想像兩個水桶，小桶水位升得快、電壓就高。",
+    answer: "V₁ = 60 V"
+  },
+  {
+    id: "cm-07", topic: "CM", subtopic: "電容並聯", diff: 2,
+    title: "電容並聯後電荷重新分配",
+    question: "一個 50 µF 電容充到 200 V 後，與一個未充電的 50 µF 電容並聯，達穩態後電壓為多少？",
+    steps: [
+      { title: "計算原本的電荷 Q",
+        hint: "Q = CV，電荷不會消失（守恆）！",
+        content: "Q = 50×10⁻⁶ × 200 = 0.01 C" },
+      { title: "並聯後總電容變大",
+        content: "C_total = 50 + 50 = 100 µF" },
+      { title: "電荷不變，電壓 = Q / C_total",
+        content: "V' = Q / C_total = 0.01 / (100×10⁻⁶) = 100 V" }
+    ],
+    trap: "**電荷守恆**，不是電壓守恆！電壓會『被稀釋』成一半。",
+    mnemonic: "**「兩桶水變一桶，水位變一半」** — 因為桶變兩倍大。",
+    answer: "100 V"
+  },
+  {
+    id: "cm-08", topic: "CM", subtopic: "RC暫態", diff: 2,
+    title: "充到 95% 需要幾倍 τ",
+    question: "RC 充電要使電容電壓達電源電壓 95% 以上，至少需要幾倍時間常數？",
+    steps: [
+      { title: "充電公式",
+        content: "v_C(t) = Vₛ × (1 − e^(−t/τ))" },
+      { title: "想要 ≥ 95%",
+        content: "1 − e^(−t/τ) ≥ 0.95\ne^(−t/τ) ≤ 0.05" },
+      { title: "取對數",
+        content: "−t/τ ≤ ln(0.05) ≈ −3\nt/τ ≥ 3" }
+    ],
+    trap: "**3τ ≈ 95%、5τ ≈ 99%** — 統測常考！",
+    mnemonic: "**「1τ → 63%；3τ → 95%；5τ → 完成」** — 這三個記住一輩子受用。",
+    answer: "3τ"
+  },
+  {
+    id: "cm-09", topic: "CM", subtopic: "磁學", diff: 2,
+    title: "長螺線管磁通密度",
+    question: "長螺線管每公分繞 5 匝，通電流 2 A，求內部磁通密度（µ₀ = 4π×10⁻⁷ H/m）。",
+    steps: [
+      { title: "把單位長度匝數換成 SI",
+        content: "n = 5 匝/cm = **500 匝/m**" },
+      { title: "公式：B = µ₀ × n × I",
+        content: "B = 4π×10⁻⁷ × 500 × 2" },
+      { title: "化簡",
+        content: "B = 4π×10⁻⁷ × 1000 = 4π×10⁻⁴" },
+      { title: "算",
+        content: "B ≈ 1.257×10⁻³ T = 1.26 mT" }
+    ],
+    trap: "**5 匝/cm = 500 匝/m**，單位換算很重要！漏掉 100 倍就完蛋。",
+    mnemonic: "**「螺線管 = µ₀ n I」** — 三個字母好背！",
+    answer: "B ≈ 1.26 mT"
+  },
+  {
+    id: "cm-10", topic: "CM", subtopic: "磁學", diff: 2,
+    title: "長直導線磁場",
+    question: "無限長直導線通 10 A，求距導線 5 cm 處的磁通密度。",
+    steps: [
+      { title: "公式",
+        hint: "B = µ₀·I / (2π·r)",
+        content: "B = µ₀·I / (2π·r)" },
+      { title: "把距離換成公尺",
+        content: "r = 5 cm = 0.05 m" },
+      { title: "代入",
+        content: "B = (4π×10⁻⁷ × 10) / (2π × 0.05)\n  = (4π×10⁻⁶) / (0.1π)" },
+      { title: "化簡 π",
+        content: "B = 40×10⁻⁶ = 40 µT" }
+    ],
+    trap: "π 在分子分母會消掉！別漏掉這一步，直接按計算機反而麻煩。",
+    mnemonic: "**「直導線 = µ₀ I / (2πr)」** — 距離 r 越遠，磁場越弱。",
+    answer: "40 µT"
+  },
+  {
+    id: "cm-11", topic: "CM", subtopic: "磁路", diff: 3,
+    title: "磁阻計算",
+    question: "磁路鐵心長 0.5 m、截面積 4 cm²、相對導磁率 1000，求磁阻。",
+    steps: [
+      { title: "磁路歐姆定律的『磁阻』",
+        hint: "ℛ = ℓ / (µ·A)，類比於電阻 R = ρℓ/A。",
+        content: "ℛ = ℓ / (µ × A)" },
+      { title: "整理：µ = µ₀ × µᵣ",
+        content: "µ = 4π×10⁻⁷ × 1000 = 4π×10⁻⁴" },
+      { title: "單位都換成 m, m²",
+        content: "ℓ = 0.5 m\nA = 4 cm² = 4×10⁻⁴ m²" },
+      { title: "代入",
+        content: "ℛ = 0.5 / (4π×10⁻⁴ × 4×10⁻⁴)\n  = 0.5 / (16π×10⁻⁸)\n  ≈ 9.95×10⁵ A-t/Wb" }
+    ],
+    trap: "**面積要換 m²**！cm² → m² 是 ×10⁻⁴，不是 ×10⁻²！",
+    mnemonic: "**「磁路歐姆」**：F = Φ·ℛ，類比 V = I·R。",
+    answer: "ℛ ≈ 9.95×10⁵ A-t/Wb"
+  },
+  {
+    id: "cm-12", topic: "CM", subtopic: "磁力", diff: 2,
+    title: "載流導線受力",
+    question: "20 cm 直導線載 5 A，置於 0.4 T 均勻磁場，電流與磁場夾 30°，求受力。",
+    steps: [
+      { title: "公式：F = B·I·ℓ·sin θ",
+        hint: "三個量都正比！加上一個 sin θ。",
+        content: "F = B × I × ℓ × sin θ" },
+      { title: "單位整理",
+        content: "ℓ = 20 cm = 0.2 m\nsin 30° = 0.5" },
+      { title: "代入",
+        content: "F = 0.4 × 5 × 0.2 × 0.5" },
+      { title: "算",
+        content: "F = 0.2 N" }
+    ],
+    trap: "夾角是 90° 時 sin = 1，力最大；0° 時 sin = 0，沒有力！",
+    mnemonic: "**「BIL sin θ」** — 弗萊明左手定則四指排好。",
+    answer: "F = 0.2 N"
+  },
+  {
+    id: "cm-13", topic: "CM", subtopic: "鐵磁性", diff: 1,
+    title: "鐵磁性材料",
+    question: "下列何者屬於鐵磁性物質？(A) 銅 (B) 鋁 (C) 鎳 (D) 鎢",
+    steps: [
+      { title: "鐵磁性三大代表",
+        hint: "**鐵、鈷、鎳**（Fe、Co、Ni）— 簡稱『**鐵三角**』。",
+        content: "鐵磁性：Fe（鐵）、Co（鈷）、Ni（鎳）" },
+      { title: "逐項判斷",
+        content: "(A) 銅 Cu — 抗磁性\n(B) 鋁 Al — 順磁性\n(C) **鎳 Ni — 鐵磁性 ✓**\n(D) 鎢 W — 順磁性" }
+    ],
+    trap: "銅、鋁雖然是好導體，但**不是鐵磁性**！別搞混『導電』跟『導磁』。",
+    mnemonic: "**「鐵三角 = Fe / Co / Ni」** — 國中理化就背過了！",
+    answer: "(C)"
+  },
+  {
+    id: "cm-14", topic: "CM", subtopic: "電感", diff: 1,
+    title: "電感定義式",
+    question: "線圈 200 匝，通 0.5 A 時磁通 4×10⁻⁴ Wb，求電感值。",
+    steps: [
+      { title: "電感公式",
+        hint: "L = NΦ / I",
+        content: "L = N × Φ / I" },
+      { title: "代入",
+        content: "L = 200 × 4×10⁻⁴ / 0.5\n  = 0.08 / 0.5" },
+      { title: "算",
+        content: "L = 0.16 H = 160 mH" }
+    ],
+    trap: "別忘了 **N**！單純 Φ/I 不夠，要乘上匝數。",
+    mnemonic: "**「L = N × Φ / I」** — 三個量都來了。",
+    answer: "L = 160 mH"
+  },
+  {
+    id: "cm-15", topic: "CM", subtopic: "電感並聯", diff: 1,
+    title: "電感並聯",
+    question: "L₁ = 8 H、L₂ = 12 H 並聯，求總電感（不考慮互感）。",
+    steps: [
+      { title: "電感跟電阻一樣！串聯加總、並聯倒數加",
+        hint: "兩個並聯特例：L = L₁·L₂ / (L₁ + L₂)",
+        content: "L_t = L₁ × L₂ / (L₁ + L₂)" },
+      { title: "代入",
+        content: "L_t = 8 × 12 / (8 + 12) = 96 / 20" },
+      { title: "算",
+        content: "L_t = 4.8 H" }
+    ],
+    trap: "**電感跟電阻同方向，跟電容相反**！記住「L 像 R」就不會錯。",
+    mnemonic: "**「L 與 R 同道，C 與兩者反」**。",
+    answer: "L_t = 4.8 H"
+  },
+  {
+    id: "cm-16", topic: "CM", subtopic: "互感", diff: 3,
+    title: "互感與加助串聯",
+    question: "L₁ = L₂ = 5 H，耦合係數 k = 0.6，求互感 M 與加助串聯總電感。",
+    steps: [
+      { title: "互感公式",
+        hint: "M = k × √(L₁·L₂)",
+        content: "M = k × √(L₁ × L₂)" },
+      { title: "算 M",
+        content: "M = 0.6 × √(5 × 5) = 0.6 × 5 = 3 H" },
+      { title: "加助 (aiding) 串聯公式",
+        hint: "L_t = L₁ + L₂ + 2M",
+        content: "L_t = 5 + 5 + 2×3 = 16 H" }
+    ],
+    trap: "**加助 +2M，反向 −2M**！別錯加錯減。耦合係數 k 介於 0~1。",
+    mnemonic: "**「同方向 +2M，反方向 −2M」** — 看磁通是『加強』還是『抵消』。",
+    answer: "M = 3 H，L_t = 16 H"
+  },
+  {
+    id: "cm-17", topic: "CM", subtopic: "電感能量", diff: 1,
+    title: "電感儲能",
+    question: "2 H 電感通 3 A 時，儲存多少磁能？",
+    steps: [
+      { title: "電感儲能公式",
+        hint: "W = ½ × L × I²，跟電容公式對偶（½CV²）",
+        content: "W = ½ × L × I²" },
+      { title: "代入",
+        content: "W = ½ × 2 × 9 = 9 J" }
+    ],
+    trap: "**有 I²，沒有 V²**！別跟電容公式搞混。",
+    mnemonic: "**「C 配 V²，L 配 I²」** — 電感愛電流。",
+    answer: "9 J"
+  },
+  {
+    id: "cm-18", topic: "CM", subtopic: "RL暫態", diff: 2,
+    title: "RL 穩態電流與時間常數",
+    question: "RL 串聯 R = 20 Ω、L = 4 H，接 40 V 直流，求穩態電流與時間常數。",
+    steps: [
+      { title: "穩態時電感視為『短路』",
+        hint: "電流穩定後，di/dt = 0，所以 v_L = 0，電感變短路。",
+        content: "I∞ = V / R = 40 / 20 = 2 A" },
+      { title: "時間常數",
+        hint: "RL 的 τ = L / R（注意是『除』，不是 RC 的乘）",
+        content: "τ = L / R = 4 / 20 = 0.2 s" }
+    ],
+    trap: "**RC 的 τ = RC，RL 的 τ = L/R** — 不要搞混！",
+    mnemonic: "**「RC 乘，RL 除」** — τ 的兩種公式。",
+    answer: "I∞ = 2 A，τ = 0.2 s"
+  },
+  {
+    id: "cm-19", topic: "CM", subtopic: "RL暫態", diff: 2,
+    title: "RL 通電中 t = 0.4 s 的電流",
+    question: "承上題，t = 0.4 s 時電流為多少？",
+    steps: [
+      { title: "計算 t/τ",
+        content: "t/τ = 0.4 / 0.2 = 2 (也就是 2τ)" },
+      { title: "公式：i(t) = I∞·(1 − e^(−t/τ))",
+        content: "i(t) = 2 × (1 − e⁻²)" },
+      { title: "e⁻² ≈ 0.135",
+        content: "i = 2 × (1 − 0.135) = 2 × 0.865" },
+      { title: "算",
+        content: "i ≈ 1.73 A" }
+    ],
+    trap: "**2τ ≈ 86.5%**！這數字要熟。",
+    mnemonic: "**「1τ → 63%、2τ → 86%、3τ → 95%、5τ → 完成」** — 黃金五階梯。",
+    answer: "i ≈ 1.73 A"
+  },
+  {
+    id: "cm-20", topic: "CM", subtopic: "電感概念", diff: 1,
+    title: "電感性質判斷",
+    question: "下列何者錯誤？(A) 電感儲能於磁場 (B) 直流穩態下電感視為短路 (C) 電感串聯時等效電感變小 (D) 電感電流不能瞬間改變",
+    steps: [
+      { title: "電感串並聯：跟電阻一樣",
+        content: "串聯 → 直接加 → 變『大』\n並聯 → 倒數加 → 變『小』" },
+      { title: "逐項",
+        content: "(A) 正確（½LI² 儲於磁場）\n(B) 正確（穩態 di/dt=0）\n(C) **錯**！串聯變大\n(D) 正確（電感 v=L·di/dt，要求 i 不能瞬變）" }
+    ],
+    trap: "**「電感電流不能瞬變」「電容電壓不能瞬變」** — 暫態題的初始條件就靠這兩條。",
+    mnemonic: "**「L 抗 i 變、C 抗 v 變」** — 兩個元件都是『保守派』。",
+    answer: "(C)"
+  }
+];
+
+// 詞彙卡 (25+ 個)
+const VOCAB = [
+  { term: "KVL", full: "Kirchhoff's Voltage Law（克希荷夫電壓定律）",
+    oneLine: "繞迴路一圈，電壓總和等於零。",
+    why: "因為能量守恆 — 你從起點繞一圈回到起點，總共沒做功。",
+    example: "電池 +12V，串接 4Ω 跟 8Ω：12V − 4V − 8V = 0 ✓",
+    mnemonic: "**「Loop = 0」**：迴路一圈電壓加起來等於 0。",
+    icon: "🔁" },
+  { term: "KCL", full: "Kirchhoff's Current Law（克希荷夫電流定律）",
+    oneLine: "進入節點的電流總和 = 流出節點的電流總和。",
+    why: "電荷守恆 — 電流不會憑空消失，也不會在節點囤積。",
+    example: "節點有 3A 進、1A 出，那剩下一條線一定是 2A 出。",
+    mnemonic: "**「Node In = Node Out」**：進等於出。",
+    icon: "⚡" },
+  { term: "相量 Phasor", full: "用旋轉向量表示正弦波",
+    oneLine: "把『會動的正弦波』凍結成一支『靜止的箭頭』。",
+    why: "因為交流電路所有量同頻率，所以可以忽略時間，只看『大小』跟『方向』。",
+    example: "v(t) = 100 sin(ωt + 30°) → V = 70.7∠30°",
+    mnemonic: "**「相量 = 大小 ∠ 角度」** — 用極座標寫。",
+    icon: "↗" },
+  { term: "有效值 RMS", full: "Root Mean Square (均方根值)",
+    oneLine: "**等效直流發熱**的電壓／電流值。",
+    why: "因為交流電在電阻上的平均功率，跟有效值的直流是一樣的。",
+    example: "台灣家用 110V 就是 RMS；峰值其實有 155V！",
+    mnemonic: "**「RMS = Vₘ / √2」** ≈ 0.707 × 峰值。",
+    icon: "📏" },
+  { term: "阻抗 Z", full: "Impedance",
+    oneLine: "交流版的『電阻』，但是是複數。",
+    why: "因為 L、C 會造成電壓電流相位差，要用『複數』才能完整描述。",
+    example: "Z = R + jX = 6 + j8 = 10∠53.13° Ω",
+    mnemonic: "**「Z 有大小，也有方向」** — 它是複數！",
+    icon: "🧭" },
+  { term: "感抗 X_L", full: "Inductive Reactance",
+    oneLine: "電感在交流電下『擋電』的程度。",
+    why: "頻率越高，電感越擋；直流時不擋（X_L = 0）。",
+    example: "60 Hz、1 H → X_L = 2π×60×1 ≈ 377 Ω",
+    mnemonic: "**「X_L = 2πfL」** — L 與 f 同方向。",
+    icon: "🌀" },
+  { term: "容抗 X_C", full: "Capacitive Reactance",
+    oneLine: "電容在交流電下『擋電』的程度。",
+    why: "頻率越高，電容越不擋；直流時完全擋（X_C = ∞）。",
+    example: "60 Hz、100 µF → X_C ≈ 26.53 Ω",
+    mnemonic: "**「X_C = 1/(2πfC)」** — C 與 f 反方向。",
+    icon: "🪫" },
+  { term: "功率因數 PF", full: "Power Factor = cos θ",
+    oneLine: "實功跟視在功率的比值。",
+    why: "PF 越接近 1，能源利用效率越高。電力公司很在意這個！",
+    example: "PF = 0.6 表示只有 60% 的電是『有用』在做功，其他都在來回浪費。",
+    mnemonic: "**「PF = P / S = cos θ」**。",
+    icon: "⚖️" },
+  { term: "實功 P", full: "Real Power",
+    oneLine: "真的做事、會發熱、能轉換能量的功率。",
+    why: "**只有電阻吃實功**，L 和 C 不吃。",
+    example: "電燈泡發光、馬達轉動、烤箱加熱都靠 P。",
+    mnemonic: "**「P = VI·cos θ」**，單位 W。",
+    icon: "🔥" },
+  { term: "虛功 Q", full: "Reactive Power",
+    oneLine: "在電源跟 L、C 之間來回搬運的『無用功』。",
+    why: "L、C 來回吸放能量但不消耗，看似在做功其實只是搬運。",
+    example: "馬達運轉時除了 P 還會吃 Q，所以工廠要裝電容改善 PF。",
+    mnemonic: "**「Q = VI·sin θ」**，單位 VAR。",
+    icon: "🔄" },
+  { term: "視在功率 S", full: "Apparent Power",
+    oneLine: "電壓乘電流，看起來像功率但不一定全用上。",
+    why: "電力設備的『額定容量』是用 S 算（如 100 kVA 的變壓器）。",
+    example: "S² = P² + Q²，三角關係。",
+    mnemonic: "**「S = VI」**，單位 VA。",
+    icon: "📦" },
+  { term: "諧振 Resonance", full: "電路內 X_L = X_C 的特殊狀態",
+    oneLine: "L 跟 C 互相完全抵消，電路看起來純電阻。",
+    why: "此時電抗 = 0，串聯阻抗最小、電流最大；並聯則相反。",
+    example: "收音機選台靠調 LC 的諧振頻率。",
+    mnemonic: "**「f₀ = 1/(2π√(LC))」** — R 不影響 f₀。",
+    icon: "🎯" },
+  { term: "Q 值", full: "Quality Factor 品質因數",
+    oneLine: "諧振電路有多『尖』、選擇性多好。",
+    why: "Q 越大，頻寬越窄，越能挑出想要的頻率（收音機選台才精準）。",
+    example: "Q = 20，f₀ = 1 kHz → BW = 50 Hz",
+    mnemonic: "**「Q 大 → BW 小」**，反比！",
+    icon: "📡" },
+  { term: "匝數比 a", full: "Turns Ratio",
+    oneLine: "變壓器初級匝數 ÷ 次級匝數。",
+    why: "**a = V₁/V₂ = I₂/I₁**；阻抗反射 Z₁ = a²·Z₂。",
+    example: "2200V → 110V 的變壓器，a = 20。",
+    mnemonic: "**「電壓比 a，電流比 1/a，阻抗比 a²」**。",
+    icon: "🔄" },
+  { term: "三相 120°", full: "Three-Phase 120°",
+    oneLine: "三個電壓相位互差 120°（=360°/3）。",
+    why: "可以產生『旋轉磁場』，是工業馬達的核心原理。",
+    example: "Vₐ = V∠0°、Vᵦ = V∠−120°、V_c = V∠+120°",
+    mnemonic: "**「360°/3 = 120°」** — 一個圓分三等份。",
+    icon: "△" },
+  { term: "Y 接 vs Δ 接", full: "Star vs Delta",
+    oneLine: "三相接線兩種方式。Y 像三葉風扇，Δ 像三角形。",
+    why: "Y 接：**V_L = √3·V_p**、I 不變；Δ 接：**I_L = √3·I_p**、V 不變。",
+    example: "Y 接 220V/380V；Δ 接 220V/220V。",
+    mnemonic: "**「Y 電壓大，Δ 電流大」** — 都是 √3 倍。",
+    icon: "⭐" },
+  { term: "時間常數 τ", full: "Time Constant",
+    oneLine: "RC 或 RL 電路充放電速度的代表數字。",
+    why: "τ 越大，反應越慢；τ 越小，反應越快。",
+    example: "RC：τ = RC；RL：τ = L/R。",
+    mnemonic: "**「1τ→63%、3τ→95%、5τ→完成」**。",
+    icon: "⏱" },
+  { term: "電容 C", full: "Capacitor",
+    oneLine: "**儲存電場能量**的元件。",
+    why: "兩塊金屬板中間夾介電質，可以儲存電荷。",
+    example: "電源旁的『大電解電容』用來穩壓。",
+    mnemonic: "**「C 儲 V」** — 電容愛電壓 ½CV²。",
+    icon: "🔋" },
+  { term: "電感 L", full: "Inductor",
+    oneLine: "**儲存磁場能量**的元件。通常是繞線線圈。",
+    why: "通電產生磁場，磁場儲能；電流變化時會反抗。",
+    example: "扼流圈、變壓器、馬達線圈都是電感。",
+    mnemonic: "**「L 儲 I」** — 電感愛電流 ½LI²。",
+    icon: "🌀" },
+  { term: "電阻 R", full: "Resistor",
+    oneLine: "**消耗電能、轉成熱**的元件。",
+    why: "電子在原子間碰撞，能量變熱。",
+    example: "電熱器、燈泡、保險絲都是電阻原理。",
+    mnemonic: "**「V = IR」** — 歐姆定律。",
+    icon: "🔥" },
+  { term: "法拉第定律", full: "Faraday's Law",
+    oneLine: "**磁通變化會感應出電動勢**。",
+    why: "這是發電機、變壓器運作的根本原理。",
+    example: "e = −N·(dΦ/dt)，N 越多匝、磁通變化越快，感應電動勢越大。",
+    mnemonic: "**「e = −N·dΦ/dt」** — 加負號就是楞次定律。",
+    icon: "⚡" },
+  { term: "楞次定律", full: "Lenz's Law",
+    oneLine: "**感應電流會反抗造成它的磁通變化**。",
+    why: "能量守恆 — 不可能憑空產生能量。",
+    example: "磁鐵接近線圈，感應電流產生的磁場會排斥磁鐵。",
+    mnemonic: "**「反抗變化」** — 阻擋原本的磁通改變。",
+    icon: "🛡" },
+  { term: "戴維寧定理", full: "Thevenin's Theorem",
+    oneLine: "**任何複雜直流網路**都可化簡成一個電壓源 + 一個電阻。",
+    why: "讓複雜電路變得超級好分析。",
+    example: "求某個負載 R_L 的電流時超好用。",
+    mnemonic: "**「V_th + R_th」** — 兩個值就夠了。",
+    icon: "🎩" },
+  { term: "歐姆定律", full: "Ohm's Law",
+    oneLine: "**V = I × R**。電壓 = 電流 × 電阻。",
+    why: "整個電路學的最基本式，永遠用得到。",
+    example: "10V 接 5Ω → I = 2A。",
+    mnemonic: "**「V/I = R」** — 三角形遮哪算哪。",
+    icon: "🔺" },
+  { term: "ELI the ICE man", full: "純元件相位口訣",
+    oneLine: "**E**lectric **L**eads **I** (電感裡電壓領先電流)；**I**ce: I leads E (電容裡電流領先電壓)。",
+    why: "純 L、純 C 的電壓電流相位差永遠 90°，誰領先誰要分清楚。",
+    example: "純 L: V 領先 I 90°；純 C: I 領先 V 90°。",
+    mnemonic: "想像一個賣冰人叫 Eli，是電機系畢業的。",
+    icon: "🧊" }
+];
+
+// ====== 公式卡 + 遊戲資料 ======
+// solve(vars, target): 給定已知變數，計算目標變數的值
+// gen(): 產生練習題用的隨機數值 + 目標答案
+// formula 用於顯示，displayName 是中文名
+
+const FORMULAS = [
+  // ===== DC =====
+  { id: "ohm", cat: "DC", lv: 1, name: "歐姆定律", formula: "V = I × R",
+    vars: [{s:"V",n:"電壓",u:"V"},{s:"I",n:"電流",u:"A"},{s:"R",n:"電阻",u:"Ω"}],
+    use: "純電阻電路最基本！知道任兩個，就能算第三個。",
+    mnemonic: "**「V/I 三角形」** — 用手指遮哪個，其他兩個就是算式！",
+    icon: "🔺",
+    solve: (v, t) => t==="V" ? v.I*v.R : t==="I" ? v.V/v.R : v.V/v.I,
+    gen: () => { const I=randInt(1,9), R=randInt(2,20); return {vars:{I,R}, target:"V", ans:I*R, unit:"V"}; },
+    blank: { display: "V = I × ?", missing: "R", options: ["R","L","C","Z"], answer: "R" }
+  },
+  { id: "p-vi", cat: "DC", lv: 1, name: "功率（標準式）", formula: "P = V × I",
+    vars: [{s:"P",n:"功率",u:"W"},{s:"V",n:"電壓",u:"V"},{s:"I",n:"電流",u:"A"}],
+    use: "算消耗多少電力。家裡電費就是 P × 時間。",
+    mnemonic: "**「電壓 × 電流 = 功率」** — 最直觀！",
+    icon: "💡",
+    solve: (v, t) => t==="P" ? v.V*v.I : t==="V" ? v.P/v.I : v.P/v.V,
+    gen: () => { const V=randPick([10,20,50,100,110,220]), I=randInt(1,5); return {vars:{V,I}, target:"P", ans:V*I, unit:"W"}; },
+    blank: { display: "P = ? × I", missing: "V", options: ["V","R","Z","Q"], answer: "V" }
+  },
+  { id: "p-i2r", cat: "DC", lv: 2, name: "功率（電流變形）", formula: "P = I² × R",
+    vars: [{s:"P",n:"功率",u:"W"},{s:"I",n:"電流",u:"A"},{s:"R",n:"電阻",u:"Ω"}],
+    use: "已知電流跟電阻時最快。也叫『熱功率』，I 平方喔！",
+    mnemonic: "**「I 平方 R」** — 平方記得寫上去，這是統測陷阱題。",
+    icon: "🔥",
+    solve: (v, t) => t==="P" ? v.I*v.I*v.R : t==="I" ? Math.sqrt(v.P/v.R) : v.P/(v.I*v.I),
+    gen: () => { const I=randInt(2,6), R=randInt(2,10); return {vars:{I,R}, target:"P", ans:I*I*R, unit:"W"}; },
+    blank: { display: "P = ?² × R", missing: "I", options: ["I","V","Q","B"], answer: "I" }
+  },
+  { id: "p-v2r", cat: "DC", lv: 2, name: "功率（電壓變形）", formula: "P = V² / R",
+    vars: [{s:"P",n:"功率",u:"W"},{s:"V",n:"電壓",u:"V"},{s:"R",n:"電阻",u:"Ω"}],
+    use: "已知電壓跟電阻時超快。家用 110V 燈泡計算就是用這個。",
+    mnemonic: "**「V 平方除 R」** — 110V 100W 燈泡電阻 = 110²/100 = 121Ω。",
+    icon: "💡",
+    solve: (v, t) => t==="P" ? v.V*v.V/v.R : t==="V" ? Math.sqrt(v.P*v.R) : v.V*v.V/v.P,
+    gen: () => { const V=randPick([20,50,100]), R=randInt(2,10); return {vars:{V,R}, target:"P", ans:Math.round(V*V/R*100)/100, unit:"W"}; },
+    blank: { display: "P = V² / ?", missing: "R", options: ["R","L","C","f"], answer: "R" }
+  },
+  { id: "r-series", cat: "DC", lv: 1, name: "電阻串聯", formula: "R總 = R₁ + R₂ + ...",
+    vars: [{s:"R總",n:"總電阻",u:"Ω"},{s:"Rᵢ",n:"各電阻",u:"Ω"}],
+    use: "串聯時電阻直接加，越串總電阻越大。",
+    mnemonic: "**「串聯就是加加加」** — 像火車一節節接，越長越大。",
+    icon: "🚂",
+    solve: (v, t) => v.R1 + v.R2,
+    gen: () => { const R1=randInt(2,10), R2=randInt(2,10); return {vars:{R1,R2}, target:"R總", ans:R1+R2, unit:"Ω"}; },
+    blank: { display: "R總 = R₁ ? R₂", missing: "+", options: ["+","×","÷","−"], answer: "+" }
+  },
+  { id: "r-parallel", cat: "DC", lv: 2, name: "電阻並聯（兩個）", formula: "R總 = R₁ × R₂ / (R₁ + R₂)",
+    vars: [{s:"R總",n:"總電阻",u:"Ω"},{s:"R₁,R₂",n:"兩個電阻",u:"Ω"}],
+    use: "兩個並聯用「乘除加」最快。結果一定比最小的還小！",
+    mnemonic: "**「乘除加」**：分子相乘，分母相加。",
+    icon: "🪢",
+    solve: (v, t) => (v.R1*v.R2)/(v.R1+v.R2),
+    gen: () => { const R1=randInt(2,10), R2=randInt(2,10); return {vars:{R1,R2}, target:"R總", ans:Math.round((R1*R2)/(R1+R2)*100)/100, unit:"Ω"}; },
+    blank: { display: "R = R₁ × R₂ / (? + R₂)", missing: "R₁", options: ["R₁","R","V","I"], answer: "R₁" }
+  },
+  // ===== Capacitor =====
+  { id: "c-def", cat: "C", lv: 1, name: "電容定義", formula: "C = Q / V",
+    vars: [{s:"C",n:"電容值",u:"F"},{s:"Q",n:"電荷",u:"C"},{s:"V",n:"電壓",u:"V"}],
+    use: "定義電容值的最基本式。",
+    mnemonic: "**「Q over V」** — 同 V 下能裝越多 Q，電容值越大。",
+    icon: "🔋",
+    solve: (v, t) => t==="C" ? v.Q/v.V : t==="Q" ? v.C*v.V : v.Q/v.C,
+    gen: () => { const C=randInt(2,10), V=randInt(2,20); return {vars:{C,V}, target:"Q", ans:C*V, unit:"C (使用 µF×V → µC)"}; },
+    blank: { display: "C = ? / V", missing: "Q", options: ["Q","I","P","Φ"], answer: "Q" }
+  },
+  { id: "c-plate", cat: "C", lv: 2, name: "平行板電容", formula: "C = ε₀·εᵣ·A / d",
+    vars: [{s:"C",n:"電容值",u:"F"},{s:"εᵣ",n:"相對介電率",u:"無單位"},{s:"A",n:"極板面積",u:"m²"},{s:"d",n:"極板距離",u:"m"}],
+    use: "從幾何外型算電容值。面積越大、距離越近，電容越大。",
+    mnemonic: "**「面積成正比，距離成反比」** — 介電質越強也越大。",
+    icon: "📏",
+    blank: { display: "C = ε₀·εᵣ·A / ?", missing: "d", options: ["d","V","f","R"], answer: "d" }
+  },
+  { id: "c-series", cat: "C", lv: 2, name: "電容串聯（兩個）", formula: "C總 = C₁ × C₂ / (C₁ + C₂)",
+    vars: [{s:"C總",n:"總電容",u:"F"},{s:"C₁,C₂",n:"兩個電容",u:"F"}],
+    use: "兩個串聯用「乘除加」（跟電阻並聯一樣！）",
+    mnemonic: "**「電容串聯像電阻並聯」** — 變小！",
+    icon: "🔗",
+    solve: (v, t) => (v.C1*v.C2)/(v.C1+v.C2),
+    gen: () => { const C1=randInt(2,12), C2=randInt(2,12); return {vars:{C1,C2}, target:"C總", ans:Math.round((C1*C2)/(C1+C2)*100)/100, unit:"µF"}; },
+    blank: { display: "C串 = C₁·C₂ / (? + C₂)", missing: "C₁", options: ["C₁","V","R","I"], answer: "C₁" }
+  },
+  { id: "c-parallel", cat: "C", lv: 1, name: "電容並聯", formula: "C總 = C₁ + C₂ + ...",
+    vars: [{s:"C總",n:"總電容",u:"F"},{s:"Cᵢ",n:"各電容",u:"F"}],
+    use: "並聯時直接加總（跟電阻串聯一樣）",
+    mnemonic: "**「電容並聯像電阻串聯」** — 加總！",
+    icon: "🪜",
+    solve: (v, t) => v.C1 + v.C2,
+    gen: () => { const C1=randInt(2,12), C2=randInt(2,12); return {vars:{C1,C2}, target:"C總", ans:C1+C2, unit:"µF"}; },
+    blank: { display: "C並 = C₁ ? C₂", missing: "+", options: ["+","×","÷","−"], answer: "+" }
+  },
+  { id: "c-energy", cat: "C", lv: 2, name: "電容儲能", formula: "W = ½ × C × V²",
+    vars: [{s:"W",n:"能量",u:"J"},{s:"C",n:"電容",u:"F"},{s:"V",n:"電壓",u:"V"}],
+    use: "算電容儲存的能量。V 平方很重要！",
+    mnemonic: "**「電容愛電壓的平方」** — 電壓加倍，能量變 4 倍！",
+    icon: "⚡",
+    solve: (v, t) => 0.5 * v.C * v.V * v.V,
+    gen: () => { const C=randInt(2,10), V=randInt(2,20); return {vars:{C,V}, target:"W", ans:0.5*C*V*V, unit:"µJ (C 用 µF)"}; },
+    blank: { display: "W = ½ × C × ?²", missing: "V", options: ["V","I","R","f"], answer: "V" }
+  },
+  { id: "tau-rc", cat: "C", lv: 1, name: "RC 時間常數", formula: "τ = R × C",
+    vars: [{s:"τ",n:"時間常數",u:"秒"},{s:"R",n:"電阻",u:"Ω"},{s:"C",n:"電容",u:"F"}],
+    use: "RC 電路充放電的快慢指標。",
+    mnemonic: "**「RC 用乘的！」**（RL 才用除）",
+    icon: "⏱",
+    solve: (v, t) => t==="τ" ? v.R*v.C : t==="R" ? v.τ/v.C : v.τ/v.R,
+    gen: () => { const R=randPick([1000,2000,5000,10000]), C=randPick([0.0001,0.0005,0.001]); return {vars:{R,C}, target:"τ", ans:R*C, unit:"秒"}; },
+    blank: { display: "τ = R × ?", missing: "C", options: ["C","L","V","I"], answer: "C" }
+  },
+  // ===== Inductor =====
+  { id: "l-def", cat: "L", lv: 2, name: "電感定義", formula: "L = N × Φ / I",
+    vars: [{s:"L",n:"電感值",u:"H"},{s:"N",n:"匝數",u:"匝"},{s:"Φ",n:"磁通",u:"Wb"},{s:"I",n:"電流",u:"A"}],
+    use: "從匝數、磁通、電流算電感值。",
+    mnemonic: "**「N Φ 除 I」** — 匝數越多、磁通越強，電感越大。",
+    icon: "🌀",
+    solve: (v, t) => v.N*v.Φ/v.I,
+    gen: () => { const N=randPick([100,200,500]), I=randInt(1,5), Φ=randInt(2,8)*0.0001; return {vars:{N,Φ,I}, target:"L", ans:Math.round(N*Φ/I*1000)/1000, unit:"H"}; },
+    blank: { display: "L = N × ? / I", missing: "Φ", options: ["Φ","V","B","P"], answer: "Φ" }
+  },
+  { id: "l-energy", cat: "L", lv: 2, name: "電感儲能", formula: "W = ½ × L × I²",
+    vars: [{s:"W",n:"能量",u:"J"},{s:"L",n:"電感",u:"H"},{s:"I",n:"電流",u:"A"}],
+    use: "算電感儲存的磁能。I 平方很重要！",
+    mnemonic: "**「電感愛電流的平方」** — 電容是 V²，電感是 I²。",
+    icon: "🧲",
+    solve: (v, t) => 0.5 * v.L * v.I * v.I,
+    gen: () => { const L=randInt(1,5), I=randInt(1,6); return {vars:{L,I}, target:"W", ans:0.5*L*I*I, unit:"J"}; },
+    blank: { display: "W = ½ × L × ?²", missing: "I", options: ["I","V","R","C"], answer: "I" }
+  },
+  { id: "l-series", cat: "L", lv: 1, name: "電感串聯", formula: "L總 = L₁ + L₂ + ...",
+    vars: [{s:"L總",n:"總電感",u:"H"},{s:"Lᵢ",n:"各電感",u:"H"}],
+    use: "電感串聯像電阻串聯，直接加！",
+    mnemonic: "**「L 跟 R 同道，C 跟兩者反」**。",
+    icon: "🚂",
+    solve: (v, t) => v.L1+v.L2,
+    gen: () => { const L1=randInt(1,8), L2=randInt(1,8); return {vars:{L1,L2}, target:"L總", ans:L1+L2, unit:"H"}; },
+    blank: { display: "L串 = L₁ ? L₂", missing: "+", options: ["+","×","÷","−"], answer: "+" }
+  },
+  { id: "tau-rl", cat: "L", lv: 2, name: "RL 時間常數", formula: "τ = L / R",
+    vars: [{s:"τ",n:"時間常數",u:"秒"},{s:"L",n:"電感",u:"H"},{s:"R",n:"電阻",u:"Ω"}],
+    use: "RL 電路充放電的快慢指標。",
+    mnemonic: "**「RL 用除的！」**（RC 才用乘）— 兩個剛好相反！",
+    icon: "⏱",
+    solve: (v, t) => t==="τ" ? v.L/v.R : t==="L" ? v.τ*v.R : v.L/v.τ,
+    gen: () => { const L=randInt(2,10), R=randInt(2,20); return {vars:{L,R}, target:"τ", ans:Math.round(L/R*100)/100, unit:"秒"}; },
+    blank: { display: "τ = L / ?", missing: "R", options: ["R","C","V","f"], answer: "R" }
+  },
+  { id: "mutual", cat: "L", lv: 3, name: "互感", formula: "M = k × √(L₁ × L₂)",
+    vars: [{s:"M",n:"互感",u:"H"},{s:"k",n:"耦合係數",u:"0~1"},{s:"L₁,L₂",n:"兩線圈電感",u:"H"}],
+    use: "兩線圈間的磁耦合程度。k=1 為理想變壓器。",
+    mnemonic: "**「k 乘根號 L₁ L₂」** — k 越大，磁耦合越強。",
+    icon: "🔗",
+    solve: (v, t) => v.k * Math.sqrt(v.L1*v.L2),
+    gen: () => { const L1=randPick([4,9,16,25]), L2=randPick([4,9,16,25]), k=randPick([0.4,0.5,0.6,0.8]); return {vars:{k,L1,L2}, target:"M", ans:Math.round(k*Math.sqrt(L1*L2)*100)/100, unit:"H"}; },
+    blank: { display: "M = ? × √(L₁L₂)", missing: "k", options: ["k","R","f","ω"], answer: "k" }
+  },
+  // ===== Magnetism =====
+  { id: "mag-ohm", cat: "M", lv: 2, name: "磁路歐姆定律", formula: "F = Φ × ℛ",
+    vars: [{s:"F",n:"磁動勢 (=NI)",u:"A-t"},{s:"Φ",n:"磁通",u:"Wb"},{s:"ℛ",n:"磁阻",u:"A-t/Wb"}],
+    use: "電路歐姆 V=IR 的磁版本。F、Φ、ℛ 對應 V、I、R。",
+    mnemonic: "**「磁版 V = IR」** — 把 V→F、I→Φ、R→ℛ。",
+    icon: "🧲",
+    solve: (v, t) => t==="F" ? v.Φ*v.ℛ : t==="Φ" ? v.F/v.ℛ : v.F/v.Φ,
+    gen: () => { const Φ=randInt(2,8)*0.001, ℛ=randPick([100000,500000,1000000]); return {vars:{Φ,ℛ}, target:"F", ans:Math.round(Φ*ℛ), unit:"A-t"}; },
+    blank: { display: "F = Φ × ?", missing: "ℛ", options: ["ℛ","R","Z","Y"], answer: "ℛ" }
+  },
+  { id: "force-bil", cat: "M", lv: 2, name: "載流導線受力", formula: "F = B × I × ℓ × sinθ",
+    vars: [{s:"F",n:"力",u:"N"},{s:"B",n:"磁通密度",u:"T"},{s:"I",n:"電流",u:"A"},{s:"ℓ",n:"導線長",u:"m"},{s:"θ",n:"夾角",u:"°"}],
+    use: "馬達、發電機運作的根本原理！",
+    mnemonic: "**「BIL sin θ」** — 弗萊明左手定則找方向。",
+    icon: "💪",
+    solve: (v, t) => v.B*v.I*v.l*Math.sin(v.θ*Math.PI/180),
+    gen: () => { const B=randPick([0.2,0.4,0.5,1]), I=randInt(2,8), l=randPick([0.1,0.2,0.5]); return {vars:{B,I,l,θ:90}, target:"F", ans:Math.round(B*I*l*100)/100, unit:"N (θ=90°)"}; },
+    blank: { display: "F = B × I × ? × sinθ", missing: "ℓ", options: ["ℓ","R","f","V"], answer: "ℓ" }
+  },
+  // ===== AC =====
+  { id: "omega", cat: "AC", lv: 1, name: "角頻率", formula: "ω = 2π × f",
+    vars: [{s:"ω",n:"角頻率",u:"rad/s"},{s:"f",n:"頻率",u:"Hz"}],
+    use: "角頻率與頻率的橋樑。看到 ω 就要想到 2πf！",
+    mnemonic: "**「看 377 就喊 60 Hz；看 314 就喊 50 Hz」**！",
+    icon: "🔄",
+    solve: (v, t) => t==="ω" ? 2*Math.PI*v.f : v.ω/(2*Math.PI),
+    gen: () => { const f=randPick([50,60,100,500,1000]); return {vars:{f}, target:"ω", ans:Math.round(2*Math.PI*f), unit:"rad/s"}; },
+    blank: { display: "ω = ? × f", missing: "2π", options: ["2π","π","2","√3"], answer: "2π" }
+  },
+  { id: "period", cat: "AC", lv: 1, name: "週期", formula: "T = 1 / f",
+    vars: [{s:"T",n:"週期",u:"s"},{s:"f",n:"頻率",u:"Hz"}],
+    use: "週期跟頻率互為倒數。",
+    mnemonic: "**「T 跟 f 一上一下」**：T 大 f 小，T 小 f 大。",
+    icon: "⏰",
+    solve: (v, t) => t==="T" ? 1/v.f : 1/v.T,
+    gen: () => { const f=randPick([50,60,100,1000]); return {vars:{f}, target:"T", ans:Math.round(1/f*100000)/100000, unit:"秒"}; },
+    blank: { display: "T = 1 / ?", missing: "f", options: ["f","ω","λ","Hz"], answer: "f" }
+  },
+  { id: "vrms", cat: "AC", lv: 1, name: "有效值", formula: "V_rms = Vₘ / √2",
+    vars: [{s:"V_rms",n:"有效值",u:"V"},{s:"Vₘ",n:"峰值",u:"V"}],
+    use: "電器規格、儀器讀值都是 RMS。",
+    mnemonic: "**「Vₘ ÷ 1.414」** ≈ 峰值 × 0.707。台灣 110V 是 RMS！",
+    icon: "📏",
+    solve: (v, t) => t==="V_rms" ? v.Vm/Math.sqrt(2) : v.Vrms*Math.sqrt(2),
+    gen: () => { const Vm=randPick([100,141.4,200,311]); return {vars:{Vm}, target:"V_rms", ans:Math.round(Vm/Math.sqrt(2)*10)/10, unit:"V"}; },
+    blank: { display: "V_rms = Vₘ / ?", missing: "√2", options: ["√2","2","π","√3"], answer: "√2" }
+  },
+  { id: "xl", cat: "AC", lv: 2, name: "感抗", formula: "X_L = 2π × f × L",
+    vars: [{s:"X_L",n:"感抗",u:"Ω"},{s:"f",n:"頻率",u:"Hz"},{s:"L",n:"電感",u:"H"}],
+    use: "電感擋交流電的程度。頻率越高擋越多！",
+    mnemonic: "**「X_L 跟 f 成正比」** — f 上升 X_L 跟著上升。",
+    icon: "🌀",
+    solve: (v, t) => t==="X_L" ? 2*Math.PI*v.f*v.L : t==="f" ? v.XL/(2*Math.PI*v.L) : v.XL/(2*Math.PI*v.f),
+    gen: () => { const f=randPick([50,60,1000]), L=randPick([0.01,0.05,0.1,0.5]); return {vars:{f,L}, target:"X_L", ans:Math.round(2*Math.PI*f*L*10)/10, unit:"Ω"}; },
+    blank: { display: "X_L = 2π × f × ?", missing: "L", options: ["L","C","R","V"], answer: "L" }
+  },
+  { id: "xc", cat: "AC", lv: 2, name: "容抗", formula: "X_C = 1 / (2π × f × C)",
+    vars: [{s:"X_C",n:"容抗",u:"Ω"},{s:"f",n:"頻率",u:"Hz"},{s:"C",n:"電容",u:"F"}],
+    use: "電容擋交流電的程度。頻率越高擋越少！",
+    mnemonic: "**「X_C 跟 f 成反比」** — f 上升 X_C 跟著下降。跟 X_L 相反！",
+    icon: "🪫",
+    solve: (v, t) => 1/(2*Math.PI*v.f*v.C),
+    gen: () => { const f=randPick([60,100,1000]), C=randPick([0.000001,0.0000022,0.0001]); return {vars:{f,C}, target:"X_C", ans:Math.round(1/(2*Math.PI*f*C)*10)/10, unit:"Ω"}; },
+    blank: { display: "X_C = 1 / (2π × ? × C)", missing: "f", options: ["f","ω","λ","R"], answer: "f" }
+  },
+  { id: "z-mag", cat: "AC", lv: 2, name: "阻抗大小", formula: "|Z| = √(R² + X²)",
+    vars: [{s:"|Z|",n:"阻抗大小",u:"Ω"},{s:"R",n:"電阻",u:"Ω"},{s:"X",n:"電抗 (X_L−X_C)",u:"Ω"}],
+    use: "RLC 電路的總阻抗大小。",
+    mnemonic: "**「畢氏定理」** — R 跟 X 是兩股，Z 是斜邊。",
+    icon: "📐",
+    solve: (v, t) => Math.sqrt(v.R*v.R + v.X*v.X),
+    gen: () => { const triples=[[3,4],[6,8],[5,12],[8,15],[7,24]]; const [R,X]=randPick(triples); return {vars:{R,X}, target:"|Z|", ans:Math.sqrt(R*R+X*X), unit:"Ω"}; },
+    blank: { display: "|Z| = √(R² + ?²)", missing: "X", options: ["X","V","I","f"], answer: "X" }
+  },
+  { id: "pf", cat: "AC", lv: 1, name: "功率因數", formula: "PF = cos θ = P / S",
+    vars: [{s:"PF",n:"功率因數",u:"無單位"},{s:"P",n:"實功",u:"W"},{s:"S",n:"視在功率",u:"VA"}],
+    use: "衡量電力使用效率。1 最好，0 最差。",
+    mnemonic: "**「PF = P/S」** — 實功佔視在功率多少。",
+    icon: "⚖️",
+    solve: (v, t) => v.P/v.S,
+    gen: () => { const S=randPick([100,200,500,1000]); const PF=randPick([0.6,0.7,0.8,0.866]); const P=Math.round(S*PF); return {vars:{P,S}, target:"PF", ans:Math.round(P/S*100)/100, unit:""}; },
+    blank: { display: "PF = ? / S", missing: "P", options: ["P","Q","V","R"], answer: "P" }
+  },
+  { id: "s-pq", cat: "AC", lv: 2, name: "功率三角形", formula: "S² = P² + Q²",
+    vars: [{s:"S",n:"視在功率",u:"VA"},{s:"P",n:"實功",u:"W"},{s:"Q",n:"虛功",u:"VAR"}],
+    use: "S、P、Q 形成直角三角形。",
+    mnemonic: "**「畢氏定理（功率版）」**：P 水平、Q 垂直、S 斜邊。",
+    icon: "📐",
+    solve: (v, t) => Math.sqrt(v.P*v.P + v.Q*v.Q),
+    gen: () => { const triples=[[300,400],[600,800],[800,600]]; const [P,Q]=randPick(triples); return {vars:{P,Q}, target:"S", ans:Math.sqrt(P*P+Q*Q), unit:"VA"}; },
+    blank: { display: "S² = P² + ?²", missing: "Q", options: ["Q","I","V","R"], answer: "Q" }
+  },
+  { id: "f0", cat: "AC", lv: 3, name: "諧振頻率", formula: "f₀ = 1 / (2π × √(L × C))",
+    vars: [{s:"f₀",n:"諧振頻率",u:"Hz"},{s:"L",n:"電感",u:"H"},{s:"C",n:"電容",u:"F"}],
+    use: "LC 電路的『自然頻率』。收音機選台靠它！",
+    mnemonic: "**「LC 平方根，倒數除 2π」** — R 不影響 f₀ 喔！",
+    icon: "📡",
+    solve: (v, t) => 1/(2*Math.PI*Math.sqrt(v.L*v.C)),
+    gen: () => { const L=randPick([0.01,0.001,0.0001]), C=randPick([0.000001,0.0000001]); return {vars:{L,C}, target:"f₀", ans:Math.round(1/(2*Math.PI*Math.sqrt(L*C))), unit:"Hz"}; },
+    blank: { display: "f₀ = 1 / (2π × √(L × ?))", missing: "C", options: ["C","R","V","f"], answer: "C" }
+  },
+  { id: "trans-ratio", cat: "AC", lv: 1, name: "變壓器匝數比", formula: "a = V₁ / V₂ = N₁ / N₂",
+    vars: [{s:"a",n:"匝數比",u:"無單位"},{s:"V₁,V₂",n:"初級/次級電壓",u:"V"}],
+    use: "電壓比 = 匝數比。匝數多的那邊電壓也大。",
+    mnemonic: "**「匝多壓大」** — 匝數多 → 電壓高。",
+    icon: "🔄",
+    solve: (v, t) => v.V1/v.V2,
+    gen: () => { const a=randPick([2,5,10,20]); const V2=randPick([12,24,110]); return {vars:{V1:a*V2, V2}, target:"a", ans:a, unit:""}; },
+    blank: { display: "a = V₁ / ?", missing: "V₂", options: ["V₂","I₂","N₂","R"], answer: "V₂" }
+  },
+  { id: "trans-z", cat: "AC", lv: 3, name: "阻抗反射", formula: "Z₁ = a² × Z₂",
+    vars: [{s:"Z₁",n:"初級看入阻抗",u:"Ω"},{s:"a",n:"匝數比",u:""},{s:"Z₂",n:"次級阻抗",u:"Ω"}],
+    use: "把次級的負載『反射』回初級看。注意有平方！",
+    mnemonic: "**「電壓比 a，阻抗 a²」** — 例如 a=10，阻抗放大 100 倍。",
+    icon: "🪞",
+    solve: (v, t) => v.a*v.a*v.Z2,
+    gen: () => { const a=randPick([2,4,5,10]), Z2=randInt(2,10); return {vars:{a,Z2}, target:"Z₁", ans:a*a*Z2, unit:"Ω"}; },
+    blank: { display: "Z₁ = ?² × Z₂", missing: "a", options: ["a","V","I","N"], answer: "a" }
+  },
+  { id: "p3p", cat: "AC", lv: 2, name: "三相實功", formula: "P = √3 × V_L × I_L × cosθ",
+    vars: [{s:"P",n:"三相實功",u:"W"},{s:"V_L",n:"線電壓",u:"V"},{s:"I_L",n:"線電流",u:"A"},{s:"cosθ",n:"功率因數",u:""}],
+    use: "三相功率黃金公式！不管 Y 接 Δ 接都用這個。",
+    mnemonic: "**「√3 V_L I_L cos θ」** — 滾瓜爛熟！",
+    icon: "△",
+    solve: (v, t) => Math.sqrt(3)*v.VL*v.IL*v.cos,
+    gen: () => { const VL=randPick([220,380]), IL=randInt(5,20), cos=randPick([0.6,0.8,0.866,1.0]); return {vars:{VL,IL,cos}, target:"P", ans:Math.round(Math.sqrt(3)*VL*IL*cos), unit:"W"}; },
+    blank: { display: "P = ? × V_L × I_L × cosθ", missing: "√3", options: ["√3","√2","2","π"], answer: "√3" }
+  },
+  { id: "yconn", cat: "AC", lv: 1, name: "Y 接線電壓", formula: "V_L = √3 × V_p",
+    vars: [{s:"V_L",n:"線電壓",u:"V"},{s:"V_p",n:"相電壓",u:"V"}],
+    use: "Y 接時，線電壓比相電壓大 √3 倍。",
+    mnemonic: "**「Y 接電壓 √3 倍」** — 線電壓 = √3 × 相電壓。",
+    icon: "⭐",
+    solve: (v, t) => Math.sqrt(3)*v.Vp,
+    gen: () => { const Vp=randPick([110,127,220]); return {vars:{Vp}, target:"V_L", ans:Math.round(Math.sqrt(3)*Vp), unit:"V"}; },
+    blank: { display: "V_L = ? × V_p", missing: "√3", options: ["√3","√2","2","3"], answer: "√3" }
+  },
+  { id: "dconn", cat: "AC", lv: 1, name: "Δ 接線電流", formula: "I_L = √3 × I_p",
+    vars: [{s:"I_L",n:"線電流",u:"A"},{s:"I_p",n:"相電流",u:"A"}],
+    use: "Δ 接時，線電流比相電流大 √3 倍。",
+    mnemonic: "**「Δ 接電流 √3 倍」** — 線電流 = √3 × 相電流。",
+    icon: "△",
+    solve: (v, t) => Math.sqrt(3)*v.Ip,
+    gen: () => { const Ip=randInt(2,15); return {vars:{Ip}, target:"I_L", ans:Math.round(Math.sqrt(3)*Ip*100)/100, unit:"A"}; },
+    blank: { display: "I_L = ? × I_p", missing: "√3", options: ["√3","√2","2","π"], answer: "√3" }
+  }
+];
+
+// ====== 工具函式（給遊戲用） ======
+function randInt(min, max) { return Math.floor(Math.random()*(max-min+1))+min; }
+function randPick(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
