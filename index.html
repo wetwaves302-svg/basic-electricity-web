@@ -458,6 +458,172 @@
   .empty-state .icon { font-size: 50px; }
 
   /* ============================
+     🌊 諧振專區 樣式
+     ============================ */
+  .res-hero {
+    background: linear-gradient(135deg, #1F4E79 0%, #8B5CF6 100%);
+    color: white; border-radius: 16px;
+    padding: 28px 24px; margin-bottom: 18px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(31,78,121,0.25);
+  }
+  .res-hero h2 { margin: 8px 0; font-size: 26px; }
+  .res-hero p { margin: 4px auto 16px; max-width: 540px; opacity: 0.92; line-height: 1.7; }
+  .res-hero-icon { font-size: 60px; }
+  .res-roadmap {
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .res-roadmap .step-chip {
+    background: rgba(255,255,255,0.16);
+    padding: 4px 12px; border-radius: 16px;
+    font-size: 12.5px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .res-roadmap .step-chip.done {
+    background: #FFD700; color: #1F4E79;
+  }
+  .res-roadmap .step-chip.current {
+    background: white; color: #1F4E79;
+    box-shadow: 0 0 0 2px #FFD700;
+  }
+  .res-stage {
+    background: white; border-radius: 14px;
+    padding: 22px 20px; margin-bottom: 16px;
+    border: 2px solid var(--border);
+  }
+  .res-stage > h3 {
+    color: var(--primary-dark); margin: 0 0 8px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 19px;
+  }
+  .res-stage .stage-num {
+    background: linear-gradient(135deg, #2E75B6, #8B5CF6);
+    color: white; width: 32px; height: 32px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px;
+  }
+  .res-stage .stage-desc {
+    color: var(--muted); font-size: 14px;
+    margin: 0 0 14px; line-height: 1.6;
+  }
+  .lesson-grid {
+    display: grid; gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  .lesson-card {
+    background: linear-gradient(135deg, #FFF4E6, white);
+    border: 2px solid var(--border); border-radius: 12px;
+    padding: 14px 16px; cursor: pointer;
+    transition: all 0.2s; position: relative;
+  }
+  .lesson-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+  .lesson-card.read {
+    background: linear-gradient(135deg, #E8F5E0, white);
+    border-color: var(--success);
+  }
+  .lesson-card.read::after {
+    content: "✓ 已讀"; position: absolute; top: 8px; right: 10px;
+    background: var(--success); color: white;
+    padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 700;
+  }
+  .lesson-card .lesson-icon { font-size: 28px; margin-bottom: 4px; }
+  .lesson-card h4 { margin: 4px 0; font-size: 14.5px; color: var(--primary-dark); }
+  .lesson-card .lesson-tag {
+    font-size: 11px; color: var(--muted);
+  }
+  .sim-area {
+    background: #F7F9FC; border-radius: 12px;
+    padding: 16px; margin-top: 8px;
+  }
+  .sim-controls {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .sim-controls label {
+    display: block; font-weight: 600;
+    color: var(--primary-dark); font-size: 14px;
+  }
+  .sim-controls input[type="range"] {
+    width: 100%; margin-top: 4px;
+    accent-color: var(--primary);
+  }
+  .sim-controls select {
+    padding: 6px 12px; border: 1px solid var(--border);
+    border-radius: 6px; margin-left: 8px;
+    font-family: inherit; font-size: 14px;
+  }
+  .sim-readout {
+    background: white; padding: 10px 14px;
+    border-radius: 8px; border-left: 4px solid var(--primary);
+    display: flex; gap: 20px; flex-wrap: wrap;
+    font-size: 14px;
+  }
+  .sim-readout b { color: var(--primary); font-size: 15px; }
+  #simCanvas {
+    width: 100%; max-width: 100%; height: auto;
+    background: white; border-radius: 10px;
+    display: block; margin: 12px 0 0;
+    border: 1px solid var(--border);
+  }
+  .sim-tip {
+    color: var(--accent); font-size: 13.5px; font-weight: 600;
+    margin: 8px 0 0; text-align: center;
+  }
+
+  /* 精熟公式卡：加上進度指示 */
+  .formula-card .mastery-dots {
+    display: flex; gap: 4px; justify-content: center; margin-top: 8px;
+  }
+  .formula-card .mastery-dots .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #DDD; transition: all 0.3s;
+  }
+  .formula-card .mastery-dots .dot.on {
+    background: var(--success);
+    box-shadow: 0 0 6px var(--success);
+  }
+  .formula-card.mastered {
+    border-color: var(--success);
+    background: linear-gradient(135deg, #E8F5E0, white);
+  }
+  .formula-card.mastered::before {
+    content: "🏆 精熟"; position: absolute; top: 6px; right: 8px;
+    background: var(--success); color: white;
+    padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700;
+    z-index: 2;
+  }
+
+  /* 諧振大師徽章 */
+  .master-badge {
+    text-align: center;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #1F4E79;
+    padding: 30px 20px; border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(255,165,0,0.4);
+    animation: badgeGlow 2s ease-in-out infinite alternate;
+  }
+  .master-badge.locked {
+    background: #E0E0E0; color: #888;
+    box-shadow: none; animation: none;
+  }
+  .master-badge .badge-icon { font-size: 70px; }
+  .master-badge .badge-name {
+    font-size: 26px; font-weight: 800;
+    margin: 8px 0 4px;
+  }
+  .master-badge .badge-status { font-size: 14px; }
+  @keyframes badgeGlow {
+    from { box-shadow: 0 8px 24px rgba(255,165,0,0.4); }
+    to   { box-shadow: 0 12px 32px rgba(255,215,0,0.7); }
+  }
+
+  /* Level 4 tile */
+  .game-tile.lv4 { background: linear-gradient(135deg, #F0E8FF, #FFFFFF); }
+  .lv4 .lv-tag { background: #8B5CF6; }
+
+  /* ============================
      Feedback Effects (答對/答錯)
      ============================ */
 
@@ -668,7 +834,8 @@
     <h1 class="brand">⚡ 基本電學 ‧ 學長帶你解題</h1>
     <div class="subtitle">圖文引導 ‧ 詞彙 ‧ 公式闖關 — 一步一步學會基本電學</div>
     <nav class="tabs">
-      <button class="tab-btn active" data-tab="formulas">🧮 公式卡</button>
+      <button class="tab-btn active" data-tab="resonance">🌊 諧振專區</button>
+      <button class="tab-btn" data-tab="formulas">🧮 公式卡</button>
       <button class="tab-btn" data-tab="game">🎮 闖關遊戲</button>
       <button class="tab-btn" data-tab="progress">📊 我的學習</button>
       <button class="tab-btn" data-tab="vocab">🃏 詞彙卡</button>
@@ -709,17 +876,108 @@
     <div id="vocabGrid" class="vocab-grid"></div>
   </section>
 
-  <!-- TAB 1: 公式卡 -->
-  <section id="tab-formulas" class="section active">
+  <!-- TAB 1: 諧振專區（精熟學習路徑） -->
+  <section id="tab-resonance" class="section active">
+    <div class="res-hero">
+      <div class="res-hero-icon">🌊</div>
+      <h2>諧振電路 ‧ 精熟學習路徑</h2>
+      <p>依「用心 CH11 諧振電路」教材設計。六個階段，照順序通關，最後變成「諧振大師」⚡</p>
+      <div class="res-roadmap" id="resRoadmap"></div>
+    </div>
+
+    <!-- 階段 1：認識諧振（微課文卡） -->
+    <div class="res-stage" id="resStage1">
+      <h3><span class="stage-num">1</span>認識諧振（12 張微課文）</h3>
+      <p class="stage-desc">每張卡只教一個小觀念。配上盪鞦韆、收音機等生活類比，看完點「我懂了」就會打勾。</p>
+      <div id="lessonGrid" class="lesson-grid"></div>
+    </div>
+
+    <!-- 階段 2：互動諧振曲線 -->
+    <div class="res-stage" id="resStage2">
+      <h3><span class="stage-num">2</span>互動諧振模擬器</h3>
+      <p class="stage-desc">拖動 R / L / C 滑桿，觀察『電流 vs 頻率』曲線即時變化。試著找出 f₀、BW 的位置！</p>
+      <div class="sim-area">
+        <div class="sim-controls">
+          <label>電路型態：
+            <select id="simType">
+              <option value="series">串聯 RLC</option>
+              <option value="parallel">並聯 RLC</option>
+            </select>
+          </label>
+          <label>電阻 R = <span id="simRval">5</span> Ω
+            <input type="range" id="simR" min="0.5" max="50" step="0.5" value="5">
+          </label>
+          <label>電感 L = <span id="simLval">10</span> mH
+            <input type="range" id="simL" min="1" max="100" step="1" value="10">
+          </label>
+          <label>電容 C = <span id="simCval">1</span> µF
+            <input type="range" id="simC" min="0.1" max="20" step="0.1" value="1">
+          </label>
+          <div class="sim-readout">
+            <span>📍 f₀ = <b id="simF0">—</b></span>
+            <span>🏅 Q = <b id="simQ">—</b></span>
+            <span>📏 BW = <b id="simBW">—</b></span>
+          </div>
+        </div>
+        <canvas id="simCanvas" width="640" height="320"></canvas>
+        <p class="sim-tip">💡 試試看：R 變大時 BW 怎麼變？L 變大時 f₀ 往哪移？</p>
+      </div>
+    </div>
+
+    <!-- 階段 3：公式精熟 -->
+    <div class="res-stage" id="resStage3">
+      <h3><span class="stage-num">3</span>公式精熟（9 張諧振公式）</h3>
+      <p class="stage-desc">每張公式要『連續答對 3 題』才算精熟。看示範 → 練習 → 進步指示燈會亮起來！</p>
+      <div id="resFormulaGrid" class="vocab-grid"></div>
+    </div>
+
+    <!-- 階段 4：範例引導題目 -->
+    <div class="res-stage" id="resStage4">
+      <h3><span class="stage-num">4</span>範例題目引導（12 題仿教材）</h3>
+      <p class="stage-desc">依用心 CH11 的範例 11-1～11-12 改寫，每題拆成 5 個小步驟引導。</p>
+      <div id="resQuestionGrid" class="q-grid"></div>
+    </div>
+
+    <!-- 階段 5：第四關闖關 -->
+    <div class="res-stage" id="resStage5">
+      <h3><span class="stage-num">5</span>諧振大師挑戰（第 4 關）</h3>
+      <p class="stage-desc">10 題隨機抽，混合公式辨識 + 套用計算。考驗你的諧振綜合能力！</p>
+      <div class="game-hub">
+        <div class="game-tile lv4" data-game="resmix" style="border-color: #8B5CF6;">
+          <div class="lv-tag" style="background: #8B5CF6;">第 4 關 ‧ 諧振大師</div>
+          <div class="game-icon">🌊</div>
+          <h3>諧振大師挑戰</h3>
+          <p>10 題隨機諧振題（公式 + 計算），全對拿 3 星 + 諧振大師徽章！</p>
+          <div class="stars" id="stars-resmix">☆☆☆</div>
+          <div class="best" id="best-resmix"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 階段 6：徽章 -->
+    <div class="res-stage" id="resStage6">
+      <h3><span class="stage-num">6</span>諧振大師認證</h3>
+      <p class="stage-desc">完成全部精熟階段 → 解鎖徽章。</p>
+      <div id="masterBadge" class="master-badge locked">
+        <div class="badge-icon">⚡</div>
+        <div class="badge-name">諧振大師</div>
+        <div class="badge-status">尚未解鎖（完成 12 微課 + 9 公式精熟 + 第 4 關 3 星）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: 公式卡 -->
+  <section id="tab-formulas" class="section">
     <p style="color:var(--muted); margin-top:0;">點公式卡可看「示範 / 換你算」練習。</p>
     <div class="filter-bar">
       <span class="filter-label">類別：</span>
-      <button class="chip active" data-fcat="all">全部 (33)</button>
+      <button class="chip active" data-fcat="all">全部 (42)</button>
       <button class="chip" data-fcat="DC">直流電路</button>
       <button class="chip" data-fcat="C">電容</button>
       <button class="chip" data-fcat="L">電感</button>
       <button class="chip" data-fcat="M">磁學</button>
       <button class="chip" data-fcat="AC">交流電路</button>
+      <button class="chip" data-fcat="RES">諧振</button>
     </div>
     <div id="formulaGrid" class="vocab-grid"></div>
   </section>
@@ -754,6 +1012,14 @@
           <p>給你數字代入，挑戰算對！可以求救「看示範」。</p>
           <div class="stars" id="stars-calc">☆☆☆</div>
           <div class="best" id="best-calc"></div>
+        </div>
+        <div class="game-tile lv4" data-game="resmix" style="border-color: #8B5CF6;">
+          <div class="lv-tag" style="background: #8B5CF6;">第 4 關 ‧ 諧振大師</div>
+          <div class="game-icon">🌊</div>
+          <h3>諧振大師挑戰</h3>
+          <p>10 題隨機諧振題（公式+計算），全對拿 3 星 + 解鎖大師徽章！</p>
+          <div class="stars" id="stars-resmix-hub">☆☆☆</div>
+          <div class="best" id="best-resmix-hub"></div>
         </div>
       </div>
       <div style="margin-top:18px;text-align:center;">
@@ -818,7 +1084,7 @@ function loadGameState() {
     bankProgress: {}        // { qid: revealedSteps }
   };
 }
-function saveGameState() { localStorage.setItem(GAME_STATE_KEY, JSON.stringify(gameState)); }
+function saveGameState() { try { localStorage.setItem(GAME_STATE_KEY, JSON.stringify(gameState)); } catch(e) {} }
 
 // ============================
 //  錯題與正確紀錄
@@ -1891,6 +2157,541 @@ function formatNum(n) {
   return Math.round(n * 100) / 100;
 }
 
+// ════════════════════════════════════════════════════════════
+//  🌊 諧振專區（含微課文、互動模擬、公式精熟、第 4 關）
+// ════════════════════════════════════════════════════════════
+
+// 諧振狀態（持久化）
+function loadResonance() {
+  try { const s = localStorage.getItem("res_state_v1"); if (s) return JSON.parse(s); } catch {}
+  return { lessonsRead: {}, mastery: {} };  // mastery: { formulaId: streak }
+}
+function saveResonance() { try { localStorage.setItem("res_state_v1", JSON.stringify(resState)); } catch(e) {} }
+let resState = loadResonance();
+
+// 也記錄第 4 關進度進 gameState
+if (!gameState.levels.resmix) {
+  gameState.levels.resmix = { best: 0, stars: 0, played: 0 };
+  saveGameState();
+}
+
+// ----- 渲染微課文卡 -----
+function renderLessons() {
+  const grid = document.getElementById("lessonGrid");
+  if (!grid || typeof LESSONS === "undefined") return;
+  grid.innerHTML = LESSONS.map((l, i) => `
+    <div class="lesson-card ${resState.lessonsRead[l.id] ? 'read' : ''}" data-lid="${l.id}">
+      <div class="lesson-icon">${l.icon}</div>
+      <h4>${escapeHtml(l.title)}</h4>
+      <div class="lesson-tag">微課文 ${i+1} / ${LESSONS.length}</div>
+    </div>`).join("");
+  grid.querySelectorAll(".lesson-card").forEach(c => {
+    c.addEventListener("click", () => openLesson(c.dataset.lid));
+  });
+  updateRoadmap();
+  updateMasterBadge();
+}
+
+function openLesson(lid) {
+  const l = LESSONS.find(x => x.id === lid);
+  if (!l) return;
+  const wasRead = !!resState.lessonsRead[lid];
+  document.getElementById("modalContent").innerHTML = `
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <h2>${l.icon} ${escapeHtml(l.title)}</h2>
+    <div class="meta">諧振專區 ‧ 微課文</div>
+    <div class="question-box" style="background:#FFF4E6;border-left-color:#FFB84D;">
+      <b style="color:var(--primary-dark);">🌱 生活類比：</b><br>${formatRich(l.analogy)}
+    </div>
+    <div class="step revealed">
+      <div class="step-header"><span class="step-num">📖</span><span>本課內容</span></div>
+      <div class="step-content">${escapeHtml(l.body)}</div>
+    </div>
+    <div class="mnemonic"><span class="label">🧠 重點記住</span><br>${formatRich(l.keypoint)}</div>
+    <div style="text-align:center;margin-top:18px;">
+      <button class="reveal-btn" id="lessonDoneBtn" style="background:${wasRead ? 'var(--success)' : 'var(--primary)'};">
+        ${wasRead ? '✓ 已完成（再讀一次）' : '✓ 我懂了！'}
+      </button>
+    </div>`;
+  openModal();
+  document.getElementById("lessonDoneBtn").addEventListener("click", () => {
+    if (!resState.lessonsRead[lid]) {
+      resState.lessonsRead[lid] = true;
+      saveResonance();
+      feedbackCorrect(document.getElementById("lessonDoneBtn"), "✓ 已讀！");
+      renderLessons();
+    }
+    setTimeout(() => closeModal(), 400);
+  });
+}
+
+function updateRoadmap() {
+  const rm = document.getElementById("resRoadmap");
+  if (!rm) return;
+  const totalLessons = LESSONS.length;
+  const readCount = Object.values(resState.lessonsRead).filter(Boolean).length;
+  const masteredCount = RES_FORMULAS.filter(f => (resState.mastery[f.id] || 0) >= 3).length;
+  const totalMastery = RES_FORMULAS.length;
+  const lv4Stars = gameState.levels.resmix?.stars || 0;
+  const stages = [
+    { name: `① 認識 ${readCount}/${totalLessons}`, done: readCount === totalLessons },
+    { name: `② 模擬器`, done: false, current: true },
+    { name: `③ 精熟 ${masteredCount}/${totalMastery}`, done: masteredCount === totalMastery },
+    { name: `④ 範例題`, done: false },
+    { name: `⑤ 第 4 關 ${lv4Stars}★`, done: lv4Stars === 3 },
+    { name: `⑥ 大師徽章`, done: readCount === totalLessons && masteredCount === totalMastery && lv4Stars === 3 }
+  ];
+  rm.innerHTML = stages.map(s => `<div class="step-chip ${s.done ? 'done' : ''} ${s.current ? 'current' : ''}">${s.name}</div>`).join("");
+}
+
+// ----- 渲染諧振專屬公式卡（含精熟進度） -----
+function renderResFormulas() {
+  const grid = document.getElementById("resFormulaGrid");
+  if (!grid) return;
+  grid.innerHTML = RES_FORMULAS.map(f => {
+    const streak = resState.mastery[f.id] || 0;
+    const mastered = streak >= 3;
+    const dots = [0,1,2].map(i => `<span class="dot ${i < streak ? 'on' : ''}"></span>`).join("");
+    return `
+      <div class="vocab-card formula-card ${mastered ? 'mastered' : ''}" data-fid="${f.id}">
+        <div class="vocab-front">
+          <div class="icon">${f.icon || "📐"}</div>
+          <div class="term">${escapeHtml(f.name)}</div>
+          <div class="formula-display" style="font-size:14px;padding:6px 10px;margin:6px 0;">${escapeHtml(f.formula)}</div>
+          <div class="full">${"★".repeat(f.lv)} ‧ 連對 3 題達精熟</div>
+          <div class="mastery-dots">${dots}</div>
+        </div>
+      </div>`;
+  }).join("");
+  grid.querySelectorAll(".vocab-card").forEach(card => {
+    card.addEventListener("click", () => openResFormula(card.dataset.fid));
+  });
+  updateMasterBadge();
+}
+
+function openResFormula(fid) {
+  const f = FORMULAS.find(x => x.id === fid);
+  if (!f) return;
+  // 用相同 modal 機制，但 hook 進去送對/錯時更新 mastery
+  renderFormulaModal(f, "info");
+  openModal();
+}
+
+// 截獲 practice answer 提交時的精熟更新
+const originalRenderFormulaModal = renderFormulaModal;
+renderFormulaModal = function(f, mode, ps) {
+  originalRenderFormulaModal(f, mode, ps);
+  // 若為諧振公式，攔截 checkAns 與 newProb 行為以更新精熟
+  if (f.cat === "RES" && mode === "practice") {
+    const checkBtn = document.getElementById("checkAns");
+    if (checkBtn) {
+      // 包一層：原本的 click handler 已經透過 renderFormulaModal 設定了
+      // 我們在此加一個 mutation observer 偵測 feedback 內容
+      const fb = document.getElementById("practiceFeedback");
+      let lastFb = "";
+      const observer = new MutationObserver(() => {
+        const t = fb.innerHTML;
+        if (t === lastFb || !t) return;
+        if (t.includes("答對了")) {
+          resState.mastery[f.id] = (resState.mastery[f.id] || 0) + 1;
+          if (resState.mastery[f.id] > 3) resState.mastery[f.id] = 3;
+          saveResonance();
+        } else if (t.includes("還不對")) {
+          // 連勝中斷：歸零
+          resState.mastery[f.id] = 0;
+          saveResonance();
+        }
+        lastFb = t;
+        renderResFormulas();
+        updateRoadmap();
+      });
+      observer.observe(fb, { childList: true, subtree: true });
+    }
+  }
+};
+
+// ----- 渲染諧振專屬題目 -----
+function renderResQuestions() {
+  const grid = document.getElementById("resQuestionGrid");
+  if (!grid) return;
+  const resQs = QUESTIONS.filter(q => q.topic === "RES");
+  grid.innerHTML = resQs.map(q => `
+    <div class="q-card" data-qid="${q.id}">
+      <div class="q-card-tags">
+        <span class="tag tag-res" style="background:#F0E8FF;color:#5B2DCB;">諧振</span>
+        <span class="diff">${"★".repeat(q.diff)}${"☆".repeat(3 - q.diff)}</span>
+      </div>
+      <h3>${escapeHtml(q.title)}</h3>
+      <div class="preview">${escapeHtml(q.question)}</div>
+      <div class="start-hint">點我開始引導 →</div>
+    </div>`).join("");
+  grid.querySelectorAll(".q-card").forEach(card => {
+    card.addEventListener("click", () => openQuestion(card.dataset.qid));
+  });
+}
+
+// ----- 諧振大師徽章 -----
+function updateMasterBadge() {
+  const el = document.getElementById("masterBadge");
+  if (!el) return;
+  const readCount = Object.values(resState.lessonsRead).filter(Boolean).length;
+  const masteredCount = RES_FORMULAS.filter(f => (resState.mastery[f.id] || 0) >= 3).length;
+  const lv4Stars = gameState.levels.resmix?.stars || 0;
+  const unlocked = readCount === LESSONS.length && masteredCount === RES_FORMULAS.length && lv4Stars >= 3;
+  if (unlocked) {
+    el.classList.remove("locked");
+    el.querySelector(".badge-status").textContent = "✨ 已解鎖！你已征服諧振電路！✨";
+  } else {
+    el.classList.add("locked");
+    el.querySelector(".badge-status").innerHTML =
+      `尚未解鎖：微課文 ${readCount}/${LESSONS.length}、公式精熟 ${masteredCount}/${RES_FORMULAS.length}、第 4 關 ${lv4Stars}/3 星`;
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+//  互動諧振曲線模擬器（Canvas）
+// ════════════════════════════════════════════════════════════
+function initSimulator() {
+  const canvas = document.getElementById("simCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext && canvas.getContext("2d");
+  if (!ctx) return;  // 環境不支援 Canvas
+  const els = {
+    type: document.getElementById("simType"),
+    R: document.getElementById("simR"),
+    L: document.getElementById("simL"),
+    C: document.getElementById("simC"),
+    Rv: document.getElementById("simRval"),
+    Lv: document.getElementById("simLval"),
+    Cv: document.getElementById("simCval"),
+    f0: document.getElementById("simF0"),
+    Q: document.getElementById("simQ"),
+    BW: document.getElementById("simBW")
+  };
+
+  function drawCurve() {
+    const R = +els.R.value;
+    const L = (+els.L.value) * 1e-3;  // mH → H
+    const C = (+els.C.value) * 1e-6;  // µF → F
+    const isSeries = els.type.value === "series";
+    els.Rv.textContent = R.toFixed(1);
+    els.Lv.textContent = (+els.L.value).toFixed(0);
+    els.Cv.textContent = (+els.C.value).toFixed(1);
+
+    const f0 = 1 / (2 * Math.PI * Math.sqrt(L * C));
+    const XL0 = 2 * Math.PI * f0 * L;
+    let Q, BW;
+    if (isSeries) {
+      Q = XL0 / R;
+      BW = f0 / Q;
+    } else {
+      Q = R / XL0;
+      BW = f0 / Q;
+    }
+    els.f0.textContent = formatHz(f0);
+    els.Q.textContent = Q.toFixed(2);
+    els.BW.textContent = formatHz(BW);
+
+    // Resize canvas based on container width for responsive
+    const cssW = canvas.parentElement.clientWidth - 20;
+    canvas.width = Math.min(700, cssW);
+    canvas.height = 280;
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // 對數頻率範圍：0.1·f0 → 10·f0
+    const fMin = f0 / 10, fMax = f0 * 10;
+    const N = 240;
+    const padL = 50, padR = 20, padT = 20, padB = 36;
+    const plotW = W - padL - padR, plotH = H - padT - padB;
+
+    // 計算每個頻率的 |I|（標準化）
+    // V = 1V (假設電源)
+    const ys = [];
+    let maxI = 0, minI = Infinity;
+    for (let i = 0; i <= N; i++) {
+      const f = fMin * Math.pow(fMax / fMin, i / N);
+      const XL = 2 * Math.PI * f * L;
+      const XC = 1 / (2 * Math.PI * f * C);
+      let I;
+      if (isSeries) {
+        const Z = Math.sqrt(R * R + (XL - XC) ** 2);
+        I = 1 / Z;
+      } else {
+        // RLC 並聯 |I| = V × |Y|，Y = √(G² + (B_C - B_L)²)
+        const G = 1 / R;
+        const Y = Math.sqrt(G * G + ((1 / XC) - (1 / XL)) ** 2);
+        I = 1 * Y;  // V=1
+      }
+      ys.push({ f, I });
+      if (I > maxI) maxI = I;
+      if (I < minI) minI = I;
+    }
+    // Y 軸範圍稍微擴
+    const yMin = isSeries ? 0 : minI * 0.95;
+    const yMax = maxI * 1.05;
+
+    // 背景
+    ctx.fillStyle = "#FAFAFA";
+    ctx.fillRect(padL, padT, plotW, plotH);
+    // 格線
+    ctx.strokeStyle = "#E0E0E0";
+    ctx.lineWidth = 1;
+    for (let i = 1; i < 5; i++) {
+      const y = padT + (plotH * i / 5);
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    }
+    for (let i = 1; i < 5; i++) {
+      const x = padL + (plotW * i / 5);
+      ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, H - padB); ctx.stroke();
+    }
+
+    // 半功率線（I = I_max/√2 for series；不畫並聯）
+    if (isSeries) {
+      const halfI = maxI / Math.sqrt(2);
+      const yHalf = padT + plotH - ((halfI - yMin) / (yMax - yMin)) * plotH;
+      ctx.strokeStyle = "#FFB84D";
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath(); ctx.moveTo(padL, yHalf); ctx.lineTo(W - padR, yHalf); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = "#FFB84D";
+      ctx.font = "11px monospace";
+      ctx.fillText("半功率點 (0.707×I_max)", padL + 6, yHalf - 4);
+    }
+
+    // 曲線
+    ctx.strokeStyle = isSeries ? "#2E75B6" : "#8B5CF6";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (let i = 0; i < ys.length; i++) {
+      const x = padL + (Math.log(ys[i].f / fMin) / Math.log(fMax / fMin)) * plotW;
+      const y = padT + plotH - ((ys[i].I - yMin) / (yMax - yMin)) * plotH;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // f₀ 標示
+    const xf0 = padL + (Math.log(f0 / fMin) / Math.log(fMax / fMin)) * plotW;
+    ctx.strokeStyle = "#C00000";
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(xf0, padT); ctx.lineTo(xf0, H - padB); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = "#C00000";
+    ctx.font = "bold 12px monospace";
+    ctx.fillText("f₀", xf0 + 4, padT + 14);
+
+    // 座標軸標籤
+    ctx.fillStyle = "#666";
+    ctx.font = "11px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("0.1·f₀", padL, H - padB + 18);
+    ctx.textAlign = "center";
+    ctx.fillText("f₀", padL + plotW / 2 + (Math.log(1/1)/Math.log(fMax/fMin))*plotW/2, H - padB + 18);
+    ctx.textAlign = "right";
+    ctx.fillText("10·f₀", W - padR, H - padB + 18);
+    ctx.textAlign = "center";
+    ctx.save();
+    ctx.translate(15, padT + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText(isSeries ? "電流 |I|" : "總導納 |Y|", 0, 0);
+    ctx.restore();
+
+    // 標題
+    ctx.fillStyle = "#1F4E79";
+    ctx.font = "bold 13px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText(`${isSeries ? "串聯" : "並聯"} RLC ‧ ${isSeries ? "電流" : "導納"}–頻率響應`, padL, padT - 5);
+  }
+
+  function formatHz(f) {
+    if (f >= 1e6) return (f / 1e6).toFixed(2) + " MHz";
+    if (f >= 1e3) return (f / 1e3).toFixed(2) + " kHz";
+    return f.toFixed(1) + " Hz";
+  }
+
+  ["change", "input"].forEach(ev => {
+    els.type.addEventListener(ev, drawCurve);
+    els.R.addEventListener(ev, drawCurve);
+    els.L.addEventListener(ev, drawCurve);
+    els.C.addEventListener(ev, drawCurve);
+  });
+  window.addEventListener("resize", drawCurve);
+  drawCurve();
+}
+
+// ════════════════════════════════════════════════════════════
+//  第 4 關：諧振大師挑戰（10 題隨機）
+// ════════════════════════════════════════════════════════════
+// 註冊在 startGame() 的擴展
+const originalStartGame = startGame;
+startGame = function(gameType) {
+  if (gameType === "resmix") {
+    // 切換到「闖關遊戲」分頁，這樣遊戲畫面才看得到
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === "game"));
+    document.querySelectorAll(".section").forEach(s => s.classList.toggle("active", s.id === "tab-game"));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // 等分頁切換動畫做完再啟動遊戲
+    setTimeout(() => {
+      document.getElementById("gameHub").style.display = "none";
+      const board = document.getElementById("gameBoard");
+      board.innerHTML = "";
+      board.style.display = "block";
+      startResMixGame(board);
+    }, 50);
+    return;
+  }
+  return originalStartGame(gameType);
+};
+
+function startResMixGame(board) {
+  const ROUND_SIZE = 10;
+  const allResFormulas = FORMULAS.filter(f => f.cat === "RES" && f.gen && f.solve);
+  // 隨機混合格式：fill / calc / blank
+  const items = [];
+  for (let i = 0; i < ROUND_SIZE; i++) {
+    const f = randPick(allResFormulas);
+    const mode = randPick(["blank", "calc", "calc"]);  // 多點 calc 練計算
+    items.push({ f, mode });
+  }
+  let idx = 0, score = 0, correctCount = 0;
+
+  function renderQ() {
+    if (idx >= items.length) { finishResMix(); return; }
+    const { f, mode } = items[idx];
+    if (mode === "blank") renderBlank(f);
+    else renderCalc(f);
+  }
+
+  function renderBlank(f) {
+    const b = f.blank;
+    board.innerHTML = `
+      <div class="game-board">
+        <div class="game-header">
+          <h3>🌊 諧振大師挑戰 <span style="color:var(--muted);font-size:14px;">(${idx+1}/${ROUND_SIZE})</span></h3>
+          <div>
+            <span class="score-pill">分數 ${score}</span>
+            <button class="skip-btn" onclick="exitGame()">返回</button>
+          </div>
+        </div>
+        <p style="color:var(--muted);text-align:center;font-size:14px;">填空題 ‧ ${escapeHtml(f.name)}</p>
+        <div class="fill-area">
+          <div class="fill-formula">${escapeHtml(b.display).replace('?', '<span class="blank">?</span>')}</div>
+          <div class="fill-options">
+            ${b.options.map(opt => `<button class="fill-opt" data-val="${escapeHtml(opt)}">${escapeHtml(opt)}</button>`).join("")}
+          </div>
+          <div class="formula-hint" id="fillHint"></div>
+        </div>
+      </div>`;
+    board.querySelectorAll(".fill-opt").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.val === b.answer) {
+          btn.classList.add("correct");
+          score += 10;
+          correctCount++;
+          feedbackCorrect(btn, "+10");
+          recordCorrect("resmix", f.id);
+          document.getElementById("fillHint").innerHTML = `<span style="color:var(--success);font-weight:700;">✅</span> ${formatRich(f.mnemonic)}`;
+          setTimeout(() => { idx++; renderQ(); }, 1000);
+        } else {
+          btn.classList.add("wrong");
+          feedbackWrong(btn, "再來！");
+          recordMistake({ kind:"resmix", formulaId: f.id, name: f.name, formula: f.formula, ts: Date.now() });
+          document.getElementById("fillHint").innerHTML = `<span style="color:var(--danger);font-weight:700;">😅 正解：${escapeHtml(b.answer)}</span>`;
+          board.querySelectorAll(".fill-opt").forEach(o => { if (o.dataset.val === b.answer) o.classList.add("correct"); });
+          setTimeout(() => { idx++; renderQ(); }, 1800);
+        }
+      });
+    });
+  }
+
+  function renderCalc(f) {
+    const problem = f.gen();
+    const valStr = Object.entries(problem.vars).map(([k,v]) => `<span class="known-chip">${k} = ${formatNum(v)}</span>`).join("");
+    board.innerHTML = `
+      <div class="game-board">
+        <div class="game-header">
+          <h3>🌊 諧振大師挑戰 <span style="color:var(--muted);font-size:14px;">(${idx+1}/${ROUND_SIZE})</span></h3>
+          <div>
+            <span class="score-pill">分數 ${score}</span>
+            <button class="skip-btn" onclick="exitGame()">返回</button>
+          </div>
+        </div>
+        <div class="calc-area">
+          <div class="calc-header">📐 <b>${escapeHtml(f.name)}</b>　${escapeHtml(f.formula)}</div>
+          <div class="calc-knowns">${valStr}</div>
+          <div class="calc-target">請求出 <b>${escapeHtml(problem.target)}</b> = ?</div>
+          <div style="text-align:center;">
+            <input type="number" step="any" class="answer-input" id="calcAns" placeholder="輸入答案" autofocus>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px;">單位：${escapeHtml(problem.unit||'')}（容差 5%）</div>
+          </div>
+          <div class="submit-row">
+            <button class="submit-btn" id="calcSubmit">✓ 提交答案</button>
+            <button class="hint-btn" id="calcHint">💡 提示</button>
+          </div>
+          <div id="calcFeedback"></div>
+        </div>
+      </div>`;
+    let hintShown = false;
+    function check() {
+      const submitBtn = document.getElementById("calcSubmit");
+      const ans = parseFloat(document.getElementById("calcAns").value);
+      const fb = document.getElementById("calcFeedback");
+      if (isNaN(ans)) { fb.innerHTML = `<div class="feedback wrong">⚠️ 請輸入一個數字！</div>`; return; }
+      const correct = Math.abs(ans - problem.ans) / Math.max(Math.abs(problem.ans), 0.001) < 0.05;
+      if (correct) {
+        const earned = hintShown ? 12 : 20;
+        score += earned; correctCount++;
+        document.querySelector(".score-pill").textContent = `分數 ${score}`;
+        fb.innerHTML = `<div class="feedback correct">🎉 答對 (+${earned})！<b>${problem.target} = ${formatNum(problem.ans)} ${escapeHtml(problem.unit||'')}</b></div>`;
+        feedbackCorrect(submitBtn, `+${earned} 🌊`);
+        recordCorrect("resmix", f.id);
+        setTimeout(() => { idx++; renderQ(); }, 1400);
+      } else {
+        fb.innerHTML = `<div class="feedback wrong">😅 再想想！<b>正解：${problem.target} = ${formatNum(problem.ans)} ${escapeHtml(problem.unit||'')}</b></div>`;
+        feedbackWrong(submitBtn, "差一點！");
+        recordMistake({ kind:"resmix", formulaId: f.id, name: f.name, formula: f.formula, ts: Date.now() });
+        setTimeout(() => { idx++; renderQ(); }, 2200);
+      }
+    }
+    document.getElementById("calcSubmit").addEventListener("click", check);
+    document.getElementById("calcAns").addEventListener("keydown", e => { if (e.key === "Enter") check(); });
+    document.getElementById("calcHint").addEventListener("click", () => {
+      if (hintShown) return;
+      hintShown = true;
+      score = Math.max(0, score - 5);
+      document.querySelector(".score-pill").textContent = `分數 ${score}`;
+      document.getElementById("calcFeedback").innerHTML = `<div class="feedback hint-show">💡 ${escapeHtml(f.formula)} ‧ ${formatRich(f.mnemonic)}</div>`;
+    });
+  }
+
+  function finishResMix() {
+    const stars = correctCount === ROUND_SIZE ? 3 : (correctCount >= 8 ? 2 : (correctCount >= 5 ? 1 : 0));
+    finishLevel("resmix", score, stars, { correct: correctCount, total: ROUND_SIZE });
+    setTimeout(updateMasterBadge, 100);
+  }
+  renderQ();
+}
+
+// ----- 把第 4 關加入儀表板 -----
+const originalRefreshGameHub = refreshGameHub;
+refreshGameHub = function() {
+  originalRefreshGameHub();
+  const stars = gameState.levels.resmix?.stars || 0;
+  const lv = gameState.levels.resmix || { played: 0, best: 0 };
+  const starsTxt = "★".repeat(stars) + "☆".repeat(3 - stars);
+  const bestTxt = lv.played > 0 ? `最佳分數：${lv.best}（已挑戰 ${lv.played} 次）` : "尚未挑戰";
+  // 諧振專區內的星等
+  ["stars-resmix", "stars-resmix-hub"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = starsTxt; el.classList.toggle("empty", stars === 0); }
+  });
+  ["best-resmix", "best-resmix-hub"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = bestTxt;
+  });
+  updateRoadmap();
+}
+
 // ============================
 //  Init
 // ============================
@@ -1899,6 +2700,16 @@ renderVocab();
 renderFormulas();
 updateProgress();
 refreshGameHub();
+renderLessons();
+renderResFormulas();
+renderResQuestions();
+initSimulator();
+updateMasterBadge();
+
+// Tab switch: 進入諧振專區重繪 canvas
+document.querySelector('[data-tab="resonance"]').addEventListener("click", () => {
+  setTimeout(() => initSimulator(), 50);
+});
 </script>
 </body>
 </html>
